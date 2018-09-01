@@ -22,6 +22,7 @@ Obstacle::Obstacle(double x_, double z_, double radius_)
 		blue = .5;
 		green = .5;
 
+
 		radius = radius_;
 };
 
