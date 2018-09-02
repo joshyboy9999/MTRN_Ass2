@@ -157,10 +157,9 @@ void drawGoals()
 void test_display()
 {
 	glBegin(GL_TRIANGLES);
-	glVertex2d(10,10);
-	glVertex2d(7, 6);
-	glVertex2d(9, 8);
-
+		glVertex3d(10,10, 10);
+		glVertex3d(7, 6, 9);
+		glVertex3d(9, 8, 8);
 	glEnd();
 }
 
