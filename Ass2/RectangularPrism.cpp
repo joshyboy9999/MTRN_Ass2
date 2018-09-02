@@ -38,7 +38,7 @@ void RectangularPrism::draw()
 
 	const double rectangular_vertices[] =
 	{
-		// Top 
+		 /*// Top 
 		x + half_width, y + height, z + length,
 		x - half_width, y + height, z + length,
 		x - half_width, y + height, z - length,
@@ -68,15 +68,49 @@ void RectangularPrism::draw()
 		x + half_width, y, z + length,
 		x - half_width, y + height, z + length,
 		x - half_width, y, z + length
+		*/
 
+		// Top 
+		x + half_width, y + height, z + length,
+		x - half_width, y + height, z + length,
+		x - half_width, y + height, z - length,
+		x + half_width, y + height, z - length,
+		// left
+		x - half_width, y + height, z + length,
+		x - half_width, y + height, z - length,
+		x - half_width, y  , z - length,
+		x - half_width, y  , z + length,
+		// right
+		x + half_width, y + height, z + length,
+		x + half_width, y + height, z - length,
+		x + half_width, y, z - length,
+		x + half_width, y, z + length,
+		// bottom
+		x + half_width, y, z + length,
+		x + half_width, y , z - length,
+		x - half_width, y , z - length,
+		x - half_width, y , z + length,
+		// front
+		x + half_width, y + height, z - length,
+		x + half_width, y , z - length,
+		x - half_width, y , z - length,
+		x - half_width, y + height, z - length,
+		// back
+		x + half_width, y + height, z + length,
+		x + half_width, y, z + length,
+		x - half_width, y , z + length,
+		x - half_width, y + height, z + length
 	};
 
-	glBegin(GL_QUAD_STRIP);
-		glColor3f(1, 0, 0);
-		glVertex3dv(rectangular_vertices);
-	glEnd();
+	//glBegin(GL_QUAD_STRIP);
+		//glColor3f(1, 0, 0);
+		//glVertex3dv(rectangular_vertices);
+	//glEnd();
 
-
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, rectangular_vertices);
+	glDrawArrays(GL_QUADS, 0, 24);
+	glDisableClientState(GL_VERTEX_ARRAY);
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length
