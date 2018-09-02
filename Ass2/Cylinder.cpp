@@ -26,5 +26,7 @@ Cylinder::Cylinder(double x_, double y_, double z_, double radius, double height
 Shape(x_, y_, z_)
 {
 	GLUquadric* cptr = gluNewQuadric();
-	x = 
+	x = x_;
+	y = y_;
+	z = z_;
 }
