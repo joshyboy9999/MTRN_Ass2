@@ -31,7 +31,9 @@ TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double base_
 	base_length = base_length_;
 	top_length = top_length_;
 	height = height_;
+	// input offset
 	a_offset = a_offset_;
+	// The other offset calculared from base line and a_offset
 	b_offset = base_length - top_length - a_offset;
 	depth = depth_;
 }
@@ -41,7 +43,7 @@ void TrapezodialPrism::draw()
 	double half_base = base_length / 2;
 	double half_depth = depth / 2;
 	
-
+	// Draw the shapes by displaying each side
 	// Top
 	glBegin(GL_QUADS);
 		glVertex3f(x + half_base - b_offset, y + height, z + half_depth);
