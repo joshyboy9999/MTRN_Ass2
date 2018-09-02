@@ -33,7 +33,7 @@ RectangularPrism::RectangularPrism(double x_, double y_, double z_, double width
 void RectangularPrism::draw()
 {
 	double half_width = length / 2;
-	length = length / 2;
+	//length = length / 2;
 	double half_height = height / 2;
 
 	float rectangular_vertices[] =
@@ -71,9 +71,14 @@ void RectangularPrism::draw()
 
 	};
 
-	glEnableClientState( GL_VERTEX_ARRAY );
-	glVertexPointer(3, GL_FLOAT, 0, rectangular_vertices);
-	glDrawArrays(GL_QUADS, 0, 24);
-	glDisableClientState(GL_VERTEX_ARRAY);
+	glBegin(GL_QUAD_STRIP);
+		glColor3f(Shape::getRed(), Shape::getGreen(), Shape::getBlue);
+		glVertex3dv(rectangular_vertices);
+	glEnd();
+
+
+	//make 2 faces, make all the sides linking the faces
+
+	//first make 2 faces with displacement = length
 
 }

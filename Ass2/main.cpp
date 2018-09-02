@@ -26,7 +26,7 @@
 	#include <sys/time.h>
 #endif
 
-
+#include "RectangularPrism.hpp"
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
@@ -123,7 +123,7 @@ int main(int argc, char ** argv) {
 	g.z = 0;
 	goals.push_back(g);
 
-
+	test_display();
 	glutMainLoop();
 
 	if (vehicle != NULL) {
@@ -156,9 +156,8 @@ void drawGoals()
 
 void test_display()
 {
-	glBegin(GL_TRIANGLES);
-	glVertex3d(10,10,10);
-	glEnd();
+	RectangularPrism box(0, 0, 0, 20, 100, 20);
+	box.draw();
 }
 
 void display() {
