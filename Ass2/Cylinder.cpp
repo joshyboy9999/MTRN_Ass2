@@ -22,11 +22,19 @@
 
 
 
-Cylinder::Cylinder(double x_, double y_, double z_, double radius, double height):
+Cylinder::Cylinder(double x_, double y_, double z_, double radius_, double height_):
 Shape(x_, y_, z_)
 {
-	GLUquadric* cptr = gluNewQuadric();
 	x = x_;
 	y = y_;
 	z = z_;
+	radius = radius_;
+	height = height_;
+
+}
+
+void Cylinder::draw()
+{
+	GLUquadric *cptr = gluNewQuadric();
+	gluCylinder(cptr, radius, radius, height, 20, 20);
 }
