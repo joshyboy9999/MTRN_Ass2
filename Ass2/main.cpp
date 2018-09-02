@@ -158,6 +158,7 @@ void test_display()
 {
 	RectangularPrism box(0, 0, 0, 20, 100, 20);
 	box.draw();
+
 }
 
 void display() {
