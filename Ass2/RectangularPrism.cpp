@@ -33,10 +33,10 @@ RectangularPrism::RectangularPrism(double x_, double y_, double z_, double width
 void RectangularPrism::draw()
 {
 	double half_width = length / 2;
-	//length = length / 2;
-	double half_height = height / 2;
+	double half_length = length / 2;
+	//double half_height = height / 2;
 
-	float rectangular_vertices[] =
+	const double rectangular_vertices[] =
 	{
 		// Top 
 		x + half_width, y + height, z + length,
@@ -59,20 +59,20 @@ void RectangularPrism::draw()
 		x - half_width, y , z + length,
 		x - half_width, y , z - length,
 		// front
-		x + half_width, y + half_height, z - length,
+		x + half_width, y + height, z - length,
 		x + half_width, y , z - length,
-		x - half_width, y + half_height, z - length,
+		x - half_width, y + height, z - length,
 		x - half_width, y , z - length,
 		// back
-		x + half_width, y + half_height, z + length,
+		x + half_width, y + height, z + length,
 		x + half_width, y, z + length,
-		x - half_width, y + half_height, z + length,
+		x - half_width, y + height, z + length,
 		x - half_width, y, z + length
 
 	};
 
 	glBegin(GL_QUAD_STRIP);
-		glColor3f(Shape::getRed(), Shape::getGreen(), Shape::getBlue);
+		glColor3f(1, 0, 0);
 		glVertex3dv(rectangular_vertices);
 	glEnd();
 
