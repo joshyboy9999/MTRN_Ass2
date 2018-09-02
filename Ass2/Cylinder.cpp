@@ -23,11 +23,11 @@
 
 
 Cylinder::Cylinder(double x_, double y_, double z_, double radius_, double height_):
-Shape(x_, (y_+ radius), (z_ - height/2.0))
+Shape(x_, y_, z_)
 {
 	x = x_;
-	y = y_ + radius;
-	z = z_ - (height/2.0);
+	y = y_;
+	z = z_;
 	radius = radius_;
 	height = height_;
 
@@ -35,24 +35,21 @@ Shape(x_, (y_+ radius), (z_ - height/2.0))
 
 void Cylinder::draw()
 {
-	//instanciate quadric ptr for cylinder body
+	double half_height = height / 2;
+	// Draw the cylinder
+	glTranslated(x, y, z);
 	GLUquadric *cptr = gluNewQuadric();
-	gluCylinder(cptr, radius, radius, height, 50, 50);
-
+	gluCylinder(cptr, radius, radius, height, 50, 20);
 	
 
-}
+	// Draw the circle
+	
+	GLUquadric *disk_front = gluNewQuadric();
+	GLUquadric *disk_back = gluNewQuadric();
 
-Disk::Disk(double x_, double y_, double z_, double radius_):Shape(x_, y_, z_)
-{
-	x = x_;
-	y = y_;
-	z = z_;
-	radius = radius_;
-}
-
-void Disk::draw()
-{
-	GLUquadric *dptr = gluNewQuadric();
-	gluDisk(dptr, 0, radius, 50, 50);
+	gluDisk(disk_front, 0, radius, 50, 1);
+	
+	glTranslated(0, 0, half_height);
+	gluDisk(disk_back, 0, radius, 50, 1);
+	glTranslated(x, y, z + height);
 }
