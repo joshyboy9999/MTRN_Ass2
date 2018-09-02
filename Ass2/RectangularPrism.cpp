@@ -99,9 +99,21 @@ void RectangularPrism::draw()
 		glVertex3d(x - half_width, y + height, z - length);
 	glEnd();
 	glBegin(GL_QUADS);
-		glVertex3d(x + half_width, y, z - length); //left face
+		glVertex3d(x + half_width, y, z - length); //right face
 		glVertex3d(x + half_width, y, z + length);
 		glVertex3d(x + half_width, y + height, z + length);
 		glVertex3d(x + half_width, y + height, z - length);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3d(x - half_width, y + height, z - length); //front face
+		glVertex3d(x - half_width, y, z - length);
+		glVertex3d(x + half_width, y, z - length);
+		glVertex3d(x + half_width, y + height, z - length);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3d(x - half_width, y + height, z + length); //back face
+		glVertex3d(x - half_width, y, z + length);
+		glVertex3d(x + half_width, y, z + length);
+		glVertex3d(x + half_width, y + height, z + length);
 	glEnd();
 }
