@@ -30,6 +30,7 @@
 #include "TriangularPrism.hpp"
 #include "TrapezodialPrism.hpp"
 #include "Cylinder.h"
+#include "MyVehicle.hpp"
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
@@ -159,16 +160,8 @@ void drawGoals()
 
 void test_display()
 {
-	//RectangularPrism box(0, 0, 0, 20, 100, 20);
-	//box.draw();
-	//TriangularPrism tri(0,0,0,10,10,1,10);
-	//tri.draw();
-	//TrapezodialPrism trap(30, 30, 30, 20, 10, 40, 4, 30);
-	//trap.draw();
-	Cylinder cyl(20, 30, 40, 20, 30);
-	cyl.draw();
-
-
+	MyVehicle *car = new(MyVehicle);
+	car->draw();
 }
 
 void display() {
