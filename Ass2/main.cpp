@@ -27,6 +27,8 @@
 #endif
 
 #include "RectangularPrism.hpp"
+#include "TriangularPrism.hpp"
+#include "TrapezodialPrism.hpp"
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
@@ -157,7 +159,11 @@ void drawGoals()
 void test_display()
 {
 	RectangularPrism box(0, 0, 0, 20, 100, 20);
-	box.draw();
+	//box.draw();
+	TriangularPrism tri(0,0,0,10,10,1,10);
+	tri.draw();
+	TrapezodialPrism trap(30, 30, 30, 20, 10, 40, 4, 30);
+	trap.draw();
 
 }
 

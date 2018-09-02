@@ -1,5 +1,8 @@
 
 #include "Shape.hpp"
+#include "RectangularPrism.hpp"
+#include "TriangularPrism.hpp"
+#include "TrapezodialPrism.hpp"
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
