@@ -26,7 +26,10 @@
 	#include <sys/time.h>
 #endif
 
-
+#include "RectangularPrism.hpp"
+#include "TriangularPrism.hpp"
+#include "TrapezodialPrism.hpp"
+#include "Cylinder.h"
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
@@ -123,7 +126,7 @@ int main(int argc, char ** argv) {
 	g.z = 0;
 	goals.push_back(g);
 
-
+	test_display();
 	glutMainLoop();
 
 	if (vehicle != NULL) {
@@ -156,11 +159,16 @@ void drawGoals()
 
 void test_display()
 {
-	glBegin(GL_TRIANGLES);
-		glVertex3d(10,10, 10);
-		glVertex3d(7, 6, 9);
-		glVertex3d(9, 8, 8);
-	glEnd();
+	//RectangularPrism box(0, 0, 0, 20, 100, 20);
+	//box.draw();
+	//TriangularPrism tri(0,0,0,10,10,1,10);
+	//tri.draw();
+	//TrapezodialPrism trap(30, 30, 30, 20, 10, 40, 4, 30);
+	//trap.draw();
+	Cylinder cyl(20, 30, 40, 20, 30);
+	cyl.draw();
+
+
 }
 
 void display() {
