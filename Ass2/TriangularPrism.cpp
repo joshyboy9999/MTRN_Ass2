@@ -27,10 +27,11 @@
 
 TriangularPrism::TriangularPrism(double x_, double y_, double z_, double base_, double side_, double theta_, double depth_)
 	: Shape(x_, y_, z_) {
+	
 	x = x_;
 	y = y_;
 	z = z_;
-
+	
 	base = base_;
 	side = side_;
 	depth = depth_;
@@ -39,11 +40,13 @@ TriangularPrism::TriangularPrism(double x_, double y_, double z_, double base_, 
 
 void TriangularPrism::draw()
 {
+	
 	double half_depth = depth / 2;
 	double half_base = base / 2;
 	double height = sin(theta) * side;
 	double cos_length = cos(theta) * side;
 	
+	// Draw the shape by displaying each side
 	// Top
 	glBegin( GL_QUADS );
 		glVertex3f(x + half_base, y , z + half_depth);
