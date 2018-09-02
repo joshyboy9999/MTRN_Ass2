@@ -123,7 +123,7 @@ int main(int argc, char ** argv) {
 	g.z = 0;
 	goals.push_back(g);
 
-
+	test_display();
 	glutMainLoop();
 
 	if (vehicle != NULL) {
@@ -157,7 +157,8 @@ void drawGoals()
 void test_display()
 {
 	glBegin(GL_TRIANGLES);
-	glVertex3d(10,10,10);
+		glVertex3d(10,10,10);
+		
 	glEnd();
 }
 
