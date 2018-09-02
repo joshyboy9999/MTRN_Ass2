@@ -9,7 +9,7 @@ private:
 	double width, length, height;
 
 public:
-	RectangularPrism();
+	
 	RectangularPrism(double x, double y, double z,double width, double length, double height);
 	void draw();
 	

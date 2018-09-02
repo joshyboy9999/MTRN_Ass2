@@ -20,9 +20,6 @@
 #include <sys/time.h>
 #endif
 
-RectangularPrism::RectangularPrism()
-{
-}
 
 RectangularPrism::RectangularPrism(double x_, double y_, double z_, double width_, double length_, double height_)
 	: Shape(x_, y_, z_) {
