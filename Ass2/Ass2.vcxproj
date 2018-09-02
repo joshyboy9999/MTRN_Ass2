@@ -156,6 +156,7 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="RectangularPrism.cpp" />
     <ClCompile Include="RemoteDataManager.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="VectorMaths.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Obstacle.hpp" />
     <ClInclude Include="ObstacleManager.hpp" />
     <ClInclude Include="Quaternion.hpp" />
+    <ClInclude Include="RectangularPrism.hpp" />
     <ClInclude Include="RemoteDataManager.hpp" />
     <ClInclude Include="Shape.hpp" />
     <ClInclude Include="VectorMaths.hpp" />
