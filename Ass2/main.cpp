@@ -30,6 +30,7 @@
 #include "TriangularPrism.hpp"
 #include "TrapezodialPrism.hpp"
 #include "Cylinder.h"
+#include "MyVehicle.hpp"
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
@@ -159,9 +160,8 @@ void drawGoals()
 
 void test_display()
 {
-	glBegin(GL_TRIANGLES);
-	glVertex3d(10,10,10);
-	glEnd();
+	MyVehicle *car = new(MyVehicle);
+	car->draw();
 }
 
 void display() {
