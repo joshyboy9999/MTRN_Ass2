@@ -2,7 +2,7 @@
 
 
 #include "Shape.hpp"
-# include "math.h"
+#include "math.h"
 
 class TriangularPrism : public Shape
 {
