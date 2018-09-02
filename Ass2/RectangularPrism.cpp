@@ -33,7 +33,7 @@ RectangularPrism::RectangularPrism(double x_, double y_, double z_, double width
 void RectangularPrism::draw()
 {
 	double half_width = length / 2;
-	//length = length / 2;
+	length = length / 2;
 	double half_height = height / 2;
 	/*
 	float rectangular_vertices[] =
@@ -81,8 +81,27 @@ void RectangularPrism::draw()
 
 	//first make 2 faces with displacement = length
 	glBegin(GL_QUADS);
-		glVertex3d(x-(x/2.0), y, z-(z/2.0)); //first corner at start
-		glVertex3d(x + width, y, z);
-
-
+		glVertex3d(x + half_width, y + height, z + length); //first corner at start
+		glVertex3d(x - half_width, y + height, z + length);
+		glVertex3d(x - half_width, y + height, z - length);
+		glVertex3d(x + half_width, y + height, z - length);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3d(x +  half_width, y, z + length); //bottom face
+		glVertex3d(x - half_width, y, z + length);
+		glVertex3d(x - half_width, y, z - length);
+		glVertex3d(x + half_width, y, z - length);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3d(x - half_width, y, z - length); //left face
+		glVertex3d(x - half_width, y, z + length);
+		glVertex3d(x - half_width, y + height, z + length);
+		glVertex3d(x - half_width, y + height, z - length);
+	glEnd();
+	glBegin(GL_QUADS);
+		glVertex3d(x + half_width, y, z - length); //left face
+		glVertex3d(x + half_width, y, z + length);
+		glVertex3d(x + half_width, y + height, z + length);
+		glVertex3d(x + half_width, y + height, z - length);
+	glEnd();
 }
