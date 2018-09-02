@@ -17,7 +17,7 @@ public:
 	virtual void update(double dt);
 	virtual void update(double speed_, double steering_, double dt);
 
-	virtual void draw();
+	virtual void draw() = 0;
 
 	static const int MAX_FORWARD_SPEED_MPS = 10;
 	static const int MAX_BACKWARD_SPEED_MPS = -4;

@@ -6,7 +6,6 @@
 
 MyVehicle::MyVehicle():Vehicle()
 {
-
 }
 
 void MyVehicle::draw()

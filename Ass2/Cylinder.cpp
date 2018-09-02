@@ -26,8 +26,8 @@ Cylinder::Cylinder(double x_, double y_, double z_, double radius_, double heigh
 Shape(x_, (y_+ radius), (z_ - height/2.0))
 {
 	x = x_;
-	y = y_;
-	z = z_;
+	y = y_ + radius;
+	z = z_ - (height/2.0);
 	radius = radius_;
 	height = height_;
 
