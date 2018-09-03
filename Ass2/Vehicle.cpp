@@ -3,7 +3,12 @@
 
 Vehicle::Vehicle() {
 	speed = steering = 0;
-};
+}
+Vehicle::Vehicle(double x, double y,double  z, double rotation): Shape(x, y, z, rotation)
+{
+
+}
+;
 
 Vehicle::~Vehicle()
 { 

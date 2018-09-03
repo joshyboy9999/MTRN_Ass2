@@ -34,7 +34,10 @@ void RectangularPrism::draw()
 	double half_width = width / 2;
 	length = length / 2;
 	double half_height = height / 2;
-	
+	glPushMatrix();
+	glTranslated(x, y, z);
+	glRotated(rotation, x_axis, y_axis, z_axis)
+
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length
@@ -79,4 +82,6 @@ void RectangularPrism::draw()
 		glVertex3d(x + half_width, y, z + length);
 		glVertex3d(x + half_width, y + height, z + length);
 	glEnd();
+
+	glPopMatrix();
 }

@@ -12,6 +12,7 @@ class Vehicle : public Shape {
 public:
 
 	Vehicle();
+	Vehicle(double x, double y, double z, double rotation);
 	virtual ~Vehicle();
 
 	virtual void update(double dt);
