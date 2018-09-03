@@ -33,7 +33,10 @@ void MyVehicle::draw()
 {
 	glPushMatrix();
 	glTranslated(x, y, z);
-		
+	std::vector<Shape *>::iterator it;
+	for (it = shapes.begin(); it != shapes.end(); it++) {
+		(*it)->draw();
+	}
 
 	glPopMatrix();
 }
