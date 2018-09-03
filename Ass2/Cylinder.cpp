@@ -22,12 +22,9 @@
 
 
 
-Cylinder::Cylinder(double x_, double y_, double z_, double radius_, double height_):
-Shape(x_, y_, z_)
+Cylinder::Cylinder(double x_, double y_, double z_,double rotation, double radius_, double height_):
+Shape(x_, y_, z_, rotation)
 {
-	x = x_;
-	y = y_;
-	z = z_;
 	radius = radius_;
 	height = height_;
 

@@ -25,11 +25,9 @@
 
 
 
-TriangularPrism::TriangularPrism(double x_, double y_, double z_, double base_, double side_, double theta_, double depth_)
-	: Shape(x_, y_, z_) {
-	x = x_;
-	y = y_;
-	z = z_;
+TriangularPrism::TriangularPrism(double x_, double y_, double z_,double rotation_, double base_, double side_, double theta_, double depth_)
+	: Shape(x_, y_, z_, rotation_) {
+
 
 	base = base_;
 	side = side_;

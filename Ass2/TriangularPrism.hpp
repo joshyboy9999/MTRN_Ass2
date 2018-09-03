@@ -11,6 +11,6 @@ private:
 	double base, side, theta, depth;
 
 public:
-	TriangularPrism(double x, double y, double z, double base, double side,double theta, double depth);
+	TriangularPrism(double x_, double y_, double z_, double rotation_, double base_, double side_, double theta_, double depth_);
 	void draw();
 };

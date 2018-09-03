@@ -10,7 +10,7 @@ private:
 
 public:
 	
-	RectangularPrism(double x, double y, double z,double width, double length, double height);
+	RectangularPrism(double x, double y, double z, double rotation_, double width, double length, double height);
 	void draw();
 	
 

@@ -21,12 +21,9 @@
 #endif
 
 
-TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double base_length_, double top_length_, double height_, double a_offset_, double depth_)
-	: Shape(x_, y_, z_) {
+TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double rotation_, double base_length_, double top_length_, double height_, double a_offset_, double depth_)
+	: Shape(x_, y_, z_, rotation_) {
 
-	x = x_;
-	y = y_;
-	z = z_;
 
 	base_length = base_length_;
 	top_length = top_length_;

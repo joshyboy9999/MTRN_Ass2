@@ -21,8 +21,8 @@
 #endif
 
 
-RectangularPrism::RectangularPrism(double x_, double y_, double z_, double width_, double length_, double height_)
-	: Shape(x_, y_, z_) {
+RectangularPrism::RectangularPrism(double x_, double y_, double z_,double rotation_, double width_, double length_, double height_)
+	: Shape(x_, y_, z_, rotation_) {
 		
 		width = width_;
 		length = length_;
