@@ -14,34 +14,38 @@
 
 MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle(x_, y_, z_ , rotation_)
 {
-	RectangularPrism *box = new RectangularPrism(0, 0.5, 0, 0, 2, 4, 2);
+	glPushMatrix();
+
+	RectangularPrism *box = new RectangularPrism(.5, 0.25, 0, 0, 3, 2, .5);
 	box->setColor(0, 0, 1);
 	addShape(box);
-	TriangularPrism *tri = new TriangularPrism(0, 2.5, -0.5, 0, 1, .5, .7, 2);
+	TriangularPrism *tri = new TriangularPrism(0, 1.5, -0.5, 0, 1, .5, .7, 2);
 	tri->setColor(0, 0, 1);
 	addShape(tri);
-	TrapezodialPrism *trap = new TrapezodialPrism(0, 2.5, 0, 0,  10, 3, 4, 1, 20);
+	TrapezodialPrism *trap = new TrapezodialPrism(0, 1.5, 0, 0, 2, 3, 1, 2, 1);
 	trap->setColor(1,1,1);
 	addShape(trap);
-	Cylinder *flwheel = new Cylinder();
+	Cylinder *flwheel = new Cylinder(0,.5,-1.5,0,.5,.5);
 	flwheel->setColor(0,0,0);
 	addShape(flwheel);
-	Cylinder *frwheel = new Cylinder();
+	Cylinder *frwheel = new Cylinder(2, .5, -1.5, 0, .5, .5);
 	frwheel->setColor(0, 0, 0);
 	addShape(frwheel);
-	Cylinder *blwheel = new Cylinder();
+	Cylinder *blwheel = new Cylinder(0, .5, 1, 0, .5, .5);
 	blwheel->setColor(0, 0, 0);
 	addShape(blwheel);
-	Cylinder *brwheel = new Cylinder();
+	Cylinder *brwheel = new Cylinder(2, .5, 1, 0, .5, .5);
 	brwheel->setColor(0, 0, 0);
 	addShape(brwheel);
 
+	glPopMatrix();
 }
 
 void MyVehicle::draw()
 {
 	glPushMatrix();
-	glTranslated(x, y, z);
+
+	positionInGL();
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
 		(*it)->draw();
