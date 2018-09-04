@@ -33,25 +33,22 @@ Shape(x_, y_, z_, rotation)
 void Cylinder::draw()
 {
 	double half_height = height / 2;
-
+	GLUquadric *cptr = gluNewQuadric();
+	GLUquadric *disk_front = gluNewQuadric();
+	GLUquadric *disk_back = gluNewQuadric();
 	// Draw the cylinder
 	glPushMatrix();
-
 	positionInGL();
-	GLUquadric *cptr = gluNewQuadric();
+
+	glPushMatrix();
 	gluCylinder(cptr, radius, radius, height, 50, 50);
 	
 
 	// Draw the circle
-	
-	GLUquadric *disk_front = gluNewQuadric();
-	GLUquadric *disk_back = gluNewQuadric();
-
 	gluDisk(disk_front, 0, radius, 50, 1);
 	
 	glTranslated(0, 0, half_height);
 	gluDisk(disk_back, 0, radius, 50, 1);
-	glTranslated(x, y, z + height);
 
 	glPopMatrix();
 }
