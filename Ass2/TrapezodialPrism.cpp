@@ -29,14 +29,14 @@ TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double rotat
 	top_length = top_length_;
 	height = height_;
 	a_offset = a_offset_;
-	b_offset = base_length - top_length - a_offset;
+	b_offset = a_offset;
 	depth = depth_;
 }
 
 void TrapezodialPrism::draw()
 {
-	double half_base = base_length / 2;
-	double half_depth = depth / 2;
+	double half_base = base_length / 2.0;
+	double half_depth = depth / 2.0;
 	
 	glPushMatrix();
 	positionInGL();

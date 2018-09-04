@@ -37,8 +37,8 @@ TriangularPrism::TriangularPrism(double x_, double y_, double z_,double rotation
 
 void TriangularPrism::draw()
 {
-	double half_depth = depth / 2;
-	double half_base = base / 2;
+	double half_depth = depth / 2.0;
+	double half_base = base / 2.0;
 	double height = sin(theta) * side;
 	double cos_length = cos(theta) * side;
 	

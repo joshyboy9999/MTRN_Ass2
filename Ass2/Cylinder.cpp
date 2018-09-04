@@ -32,7 +32,7 @@ Shape(x_, y_, z_, rotation)
 
 void Cylinder::draw()
 {
-	double half_height = height / 2;
+	double half_height = height / 2.0;
 	GLUquadric *cptr = gluNewQuadric();
 	GLUquadric *disk_front = gluNewQuadric();
 	GLUquadric *disk_back = gluNewQuadric();
