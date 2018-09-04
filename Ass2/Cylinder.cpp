@@ -40,15 +40,17 @@ void Cylinder::draw()
 	glPushMatrix();
 	positionInGL();
 
-	glPushMatrix();
 	gluCylinder(cptr, radius, radius, height, 50, 50);
 	
 
 	// Draw the circle
+
 	gluDisk(disk_front, 0, radius, 50, 1);
 	
-	glTranslated(0, 0, half_height);
+	glPushMatrix();
+	glTranslated(0, 0, height);
 	gluDisk(disk_back, 0, radius, 50, 1);
+	glPopMatrix();
 
 	glPopMatrix();
 }
