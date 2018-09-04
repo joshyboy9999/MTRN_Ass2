@@ -35,9 +35,8 @@ void RectangularPrism::draw()
 	length = length / 2;
 	double half_height = height / 2;
 	glPushMatrix();
-	glTranslated(x, y, z);
-	glRotated(rotation, x_axis, y_axis, z_axis)
-
+	positionInGL();
+	setColorInGL();
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length

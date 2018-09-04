@@ -61,7 +61,7 @@ using namespace std;
 using namespace scos;
 
 // Used to store the previous mouse location so we
-//   can calculate relative mouse movement.
+// can calculate relative mouse movement.
 int prev_mouse_x = -1;
 int prev_mouse_y = -1;
 

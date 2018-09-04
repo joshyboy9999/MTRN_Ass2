@@ -38,7 +38,9 @@ void TrapezodialPrism::draw()
 	double half_base = base_length / 2;
 	double half_depth = depth / 2;
 	
-
+	glPushMatrix();
+	positionInGL();
+	setColorInGL();
 	// Top
 	glBegin(GL_QUADS);
 		glVertex3f(x + half_base - b_offset, y + height, z + half_depth);
@@ -86,5 +88,7 @@ void TrapezodialPrism::draw()
 		glVertex3f(x - half_base + a_offset, y + height, z + half_depth);
 		glVertex3f(x - half_base, y, z + half_depth);
 	glEnd();
+
+	glPopMatrix();
 	
 }
