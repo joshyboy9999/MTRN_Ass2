@@ -25,10 +25,10 @@ MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle
 	TrapezodialPrism *trap = new TrapezodialPrism(.5, .5, 0, 0, 2, 1, 1, .4, .5);
 	trap->setColor(1,1,1);
 	addShape(trap);
-	Cylinder *flwheel = new Cylinder(0,.5,-1.5,0,.5,.5);
+	Cylinder *flwheel = new Cylinder(0,.5,-1,0,.5,.5);
 	flwheel->setColor(0,0,0);
 	addShape(flwheel);
-	Cylinder *frwheel = new Cylinder(2, .5, -1.5, 0, .5, .5);
+	Cylinder *frwheel = new Cylinder(2, .5, -1, 0, .5, .5);
 	frwheel->setColor(0, 0, 0);
 	addShape(frwheel);
 	Cylinder *blwheel = new Cylinder(0, .5, 1, 0, .5, .5);

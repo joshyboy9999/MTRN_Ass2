@@ -160,8 +160,10 @@ void drawGoals()
 
 void test_display()
 {
+	
 	MyVehicle *car = new MyVehicle(10,20,40,30);
 	car->draw();
+	
 }
 
 void display() {
