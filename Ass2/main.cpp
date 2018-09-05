@@ -43,7 +43,7 @@
 #include "HUD.hpp"
 #include "ObstacleManager.hpp"
 
-void test_display();
+//void test_display();
 void display();
 void reshape(int width, int height);
 void idle();
@@ -112,7 +112,7 @@ int main(int argc, char ** argv) {
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
 
-	//vehicle = new MyVehicle();
+	vehicle = new MyVehicle();
 
 
 	// add test obstacles
@@ -127,7 +127,7 @@ int main(int argc, char ** argv) {
 	g.z = 0;
 	goals.push_back(g);
 
-	test_display();
+	//test_display();
 	glutMainLoop();
 
 	if (vehicle != NULL) {
@@ -157,7 +157,7 @@ void drawGoals()
 		glPopMatrix();
 	}
 }
-
+/*
 void test_display()
 {
 	
@@ -165,7 +165,7 @@ void test_display()
 	car->draw();
 	
 }
-
+*/
 void display() {
 	frameCounter++;
 	// -------------------------------------------------------------------------
@@ -208,7 +208,7 @@ void display() {
 	// draw HUD
 	HUD::Draw();
 
-	test_display();
+	//test_display();
 
 	glutSwapBuffers();
 };
