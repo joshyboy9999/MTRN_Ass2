@@ -10,7 +10,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
-MyVehicle::MyVehicle() :Vehicle(x_, y_, z_ , rotation_)
+MyVehicle::MyVehicle(x_,y_,z_,rotation) :Vehicle(x_, y_, z_ , rotation_)
 {
 	RectangularPrism *box = new RectangularPrism(0, 20, 0, 20, 40, 20);
 	addShape(box);
