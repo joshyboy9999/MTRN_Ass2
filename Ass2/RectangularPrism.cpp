@@ -31,14 +31,12 @@ RectangularPrism::RectangularPrism(double x_, double y_, double z_,double rotati
 
 void RectangularPrism::draw()
 {
-	double half_width = width / 2;
-	length = length / 2;
-	double half_height = height / 2;
+	double half_width = width / 2.0;
+	length = length / 2.0;
+	double half_height = height / 2.0;
 	glPushMatrix();
 	positionInGL();
-	setColor(1, 0, 0);
 	setColorInGL();
-
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length
