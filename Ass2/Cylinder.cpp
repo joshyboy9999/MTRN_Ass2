@@ -34,7 +34,10 @@ void Cylinder::draw()
 {
 	double half_height = height / 2;
 	// Draw the cylinder
-	glTranslated(x, y, z);
+	glPushMatrix();
+	positionInGL();
+	setColorInGL();
+
 	GLUquadric *cptr = gluNewQuadric();
 	gluCylinder(cptr, radius, radius, height, 50, 20);
 	
@@ -49,4 +52,6 @@ void Cylinder::draw()
 	glTranslated(0, 0, half_height);
 	gluDisk(disk_back, 0, radius, 50, 1);
 	glTranslated(x, y, z + height);
+
+	glPopMatrix();
 }

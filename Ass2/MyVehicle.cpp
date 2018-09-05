@@ -10,13 +10,13 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
-MyVehicle::MyVehicle() :Vehicle(x_, y_, z_ , rotation_)
+MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle(x_, y_, z_ , rotation_)
 {
-	RectangularPrism *box = new RectangularPrism(0, 20, 0, 20, 40, 20);
+	/*RectangularPrism *box = new RectangularPrism(x_, y_, z_, );
 	addShape(box);
-	TriangularPrism *tri = new TriangularPrism(10, 20, 0, 20, 20, 0.5, 10);
+	TriangularPrism *tri = new TriangularPrism();
 	addShape(tri);
-	TrapezodialPrism *trap = new TrapezodialPrism(0, 40, 0, 10, 3, 4, 1, 20);
+	TrapezodialPrism *trap = new TrapezodialPrism();
 	addShape(trap);
 	Cylinder *flwheel = new Cylinder();
 	addShape(flwheel);
@@ -26,17 +26,17 @@ MyVehicle::MyVehicle() :Vehicle(x_, y_, z_ , rotation_)
 	addShape(blwheel);
 	Cylinder *brwheel = new Cylinder();
 	addShape(brwheel);
-
+	*/
 }
 
 void MyVehicle::draw()
 {
 	glPushMatrix();
-	glTranslated(x, y, z);
-	std::vector<Shape *>::iterator it;
-	for (it = shapes.begin(); it != shapes.end(); it++) {
-		(*it)->draw();
-	}
+		glTranslated(x, y, z);
+		std::vector<Shape *>::iterator it;
+		for (it = shapes.begin(); it != shapes.end(); it++) {
+			(*it)->draw();
+		}
 
 	glPopMatrix();
 }

@@ -160,8 +160,18 @@ void drawGoals()
 
 void test_display()
 {
-	MyVehicle *car = new(MyVehicle);
+	/*MyVehicle *car = new(MyVehicle);
 	car->draw();
+	*/
+	RectangularPrism box(20, 0, 20, 45,20, 10, 20);
+	TriangularPrism tri(-20,0 ,20, 30, 20, 20, 1, 15);
+	TrapezodialPrism tra(-20, 0, -20, 120, 10, 5, 10, 3, 10);
+	Cylinder cyl(20, 0, -20, 40, 10, 20);
+	box.draw();
+	tri.draw();
+	tra.draw();
+	cyl.draw();
+
 }
 
 void display() {
