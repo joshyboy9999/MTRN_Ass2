@@ -1,5 +1,21 @@
 
+
+#include "RectangularPrism.hpp"
+#include "TriangularPrism.hpp"
+#include "TrapezodialPrism.hpp"
+#include "Cylinder.h"
+#include "MyVehicle.hpp"
+#include "Camera.hpp"
+#include "Ground.hpp"
+#include "KeyManager.hpp"
+
+#include "Shape.hpp"
 #include "Vehicle.hpp"
+
+#include "RemoteDataManager.hpp"
+#include "Messages.hpp"
+#include "HUD.hpp"
+#include "ObstacleManager.hpp"
 
 Vehicle::Vehicle() {
 	speed = steering = 0;
@@ -52,6 +68,40 @@ void Vehicle::update(double speed_, double steering_, double dt)
 void Vehicle::addShape(Shape * shape) 
 {
 	shapes.push_back(shape);
+}
+
+void Vehicle::populate(VehicleModel vm)
+{
+	std::vector<Shape *>::iterator it;
+	for (it = shapes.begin(); it != shapes.end(); it++) {
+		ShapeInit shape;
+		RectangularPrism *rec = dynamic_cast<RectangularPrism*>(*it);
+		TriangularPrism  *tri = dynamic_cast<TriangularPrism*>(*it);
+		TrapezodialPrism  *tra = dynamic_cast<TrapezodialPrism*>(*it);
+		Cylinder *cyl = dynamic_cast<Cylinder*>(*it);
+
+		if (rec != nullptr) {
+			shape.type = RECTANGULAR_PRISM;
+
+			shape.params.rect.xlen = rec->length;
+
+		}
+
+		if (tri != nullptr) {
+
+		}
+
+		if (tra != nullptr) {
+
+		}
+
+		if (cyl != nullptr) {
+
+		}
+
+
+		vm.shapes.push_back(shape);
+	}
 }
 
 double clamp(double a, double n, double b) {

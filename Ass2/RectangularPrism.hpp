@@ -4,12 +4,10 @@
 
 
 class RectangularPrism : public Shape {
-
-private:
-	double width, length, height;
+	
 
 public:
-	
+	double width, length, height;
 	RectangularPrism(double x, double y, double z, double rotation_, double width, double length, double height);
 	void draw();
 	

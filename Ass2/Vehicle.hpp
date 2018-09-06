@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Shape.hpp"
 #include "VectorMaths.hpp"
+#include "Messages.hpp"
 #include <vector>
 
 class Vehicle : public Shape {
@@ -30,6 +31,7 @@ public:
 	double getSteering() const { return steering; }
 
 	void addShape(Shape * shape);
+	void populate(VehicleModel);
 protected:
 	double speed;     // m/s
 	double steering;  // degrees
