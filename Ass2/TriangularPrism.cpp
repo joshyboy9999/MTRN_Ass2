@@ -37,11 +37,14 @@ TriangularPrism::TriangularPrism(double x_, double y_, double z_,double rotation
 
 void TriangularPrism::draw()
 {
-	double half_depth = depth / 2;
-	double half_base = base / 2;
+	double half_depth = depth / 2.0;
+	double half_base = base / 2.0;
 	double height = sin(theta) * side;
 	double cos_length = cos(theta) * side;
 	
+	glPushMatrix();
+	positionInGL();
+	setColorInGL();
 	// Top
 	glBegin( GL_QUADS );
 		glVertex3f(x + half_base, y , z + half_depth);
@@ -79,5 +82,7 @@ void TriangularPrism::draw()
 		glVertex3f(x - half_base + cos_length, y, z + half_depth);
 		glVertex3f(x - half_base, y, z + half_depth);
 	glEnd();
+
+	glPopMatrix();
 	
 }

@@ -43,7 +43,7 @@
 #include "HUD.hpp"
 #include "ObstacleManager.hpp"
 
-void test_display();
+//void test_display();
 void display();
 void reshape(int width, int height);
 void idle();
@@ -61,7 +61,7 @@ using namespace std;
 using namespace scos;
 
 // Used to store the previous mouse location so we
-//   can calculate relative mouse movement.
+// can calculate relative mouse movement.
 int prev_mouse_x = -1;
 int prev_mouse_y = -1;
 
@@ -112,7 +112,7 @@ int main(int argc, char ** argv) {
 	//   custom vehicle.
 	// -------------------------------------------------------------------------
 
-	//vehicle = new MyVehicle();
+	vehicle = new MyVehicle();
 
 
 	// add test obstacles
@@ -127,7 +127,7 @@ int main(int argc, char ** argv) {
 	g.z = 0;
 	goals.push_back(g);
 
-	test_display();
+	//test_display();
 	glutMainLoop();
 
 	if (vehicle != NULL) {
@@ -157,13 +157,15 @@ void drawGoals()
 		glPopMatrix();
 	}
 }
-
+/*
 void test_display()
 {
-	MyVehicle *car = new(MyVehicle);
+	
+	MyVehicle *car = new MyVehicle(10,20,40,30);
 	car->draw();
+	
 }
-
+*/
 void display() {
 	frameCounter++;
 	// -------------------------------------------------------------------------
@@ -206,7 +208,7 @@ void display() {
 	// draw HUD
 	HUD::Draw();
 
-	test_display();
+	//test_display();
 
 	glutSwapBuffers();
 };
