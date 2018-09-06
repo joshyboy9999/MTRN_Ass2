@@ -84,11 +84,32 @@ void Vehicle::populate(VehicleModel vm)
 			shape.type = RECTANGULAR_PRISM;
 
 			shape.params.rect.xlen = rec->length;
-
+			shape.params.rect.ylen = rec->height;
+			shape.params.rect.zlen = rec->width;
+			shape.xyz[0] = rec->getX();
+			shape.xyz[1] = rec->getY();
+			shape.xyz[2] = rec->getZ();
+			shape.rotation = rec->getRotation();
+			shape.rgb[0] = rec->getRed();
+			shape.rgb[1] = rec->getGreen();
+			shape.rgb[2] = rec->getBlue();
 		}
 
-		if (tri != nullptr) {
 
+		if (tri != nullptr) {
+			shape.type = TRIANGULAR_PRISM;
+
+			shape.params.tri.alen = tri->length;
+			shape.params.tri.blen = tri->height;
+			shape.params.tri.angle = tri->width;
+			shape.params.tri.depth = tri->width;
+			shape.xyz[0] = tri->getX();
+			shape.xyz[1] = tri->getY();
+			shape.xyz[2] = tri->getZ();
+			shape.rotation = tri->getRotation();
+			shape.rgb[0] = tri->getRed();
+			shape.rgb[1] = tri->getGreen();
+			shape.rgb[2] = tri->getBlue();
 		}
 
 		if (tra != nullptr) {
