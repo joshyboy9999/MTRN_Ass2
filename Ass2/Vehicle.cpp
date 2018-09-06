@@ -113,11 +113,37 @@ void Vehicle::populate(VehicleModel vm)
 		}
 
 		if (tra != nullptr) {
+			shape.type = TRAPEZOIDAL_PRISM;
 
+			shape.params.trap.alen = tra->base_length;
+			shape.params.trap.blen = tra->top_length;
+			shape.params.trap.aoff = tra->a_offset;
+			shape.params.trap.height = tra->height;
+			shape.params.trap.depth = tra->depth;
+			shape.xyz[0] = tra->getX();
+			shape.xyz[1] = tra->getY();
+			shape.xyz[2] = tra->getZ();
+			shape.rotation = tra->getRotation();
+			shape.rgb[0] = tra->getRed();
+			shape.rgb[1] = tra->getGreen();
+			shape.rgb[2] = tra->getBlue();
 		}
 
 		if (cyl != nullptr) {
+			shape.type = CYLINDER;
 
+			shape.params.cyl.alen = cyl->base_length;
+			shape.params.cyl.blen = cyl->top_length;
+			shape.params.cyl.aoff = cyl->a_offset;
+			shape.params.cyl.height = cyl->height;
+			shape.params.cyl.depth = cyl->depth;
+			shape.xyz[0] = cyl->getX();
+			shape.xyz[1] = cyl->getY();
+			shape.xyz[2] = cyl->getZ();
+			shape.rotation = cyl->getRotation();
+			shape.rgb[0] = cyl->getRed();
+			shape.rgb[1] = cyl->getGreen();
+			shape.rgb[2] = cyl->getBlue();
 		}
 
 
