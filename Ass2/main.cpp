@@ -367,21 +367,28 @@ void idle() {
 									
 									switch (it->type) {
 
-									case RECTANGULAR_PRISM:
+										case RECTANGULAR_PRISM: {
+											RectangularPrism rec((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
+											rec.draw();
+											break;
+										}
 
-										break;
+										case TRAPEZOIDAL_PRISM:
+										{
 
-									case TRAPEZOIDAL_PRISM:
+											break;
+										}
 
-										break;
 
-									case CYLINDER:
+										case CYLINDER:
+										{
 
-										break;
-
-									case TRIANGULAR_PRISM:
-
-										break;
+											break;
+										}
+										case TRIANGULAR_PRISM:
+										{
+											break;
+										}0
 									}
 
 
