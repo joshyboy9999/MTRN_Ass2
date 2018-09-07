@@ -20,6 +20,9 @@
 Vehicle::Vehicle() {
 	speed = steering = 0;
 }
+
+
+
 Vehicle::Vehicle(double x, double y,double  z, double rotation): Shape(x, y, z, rotation)
 {
 
@@ -132,11 +135,10 @@ void Vehicle::populate(VehicleModel vm)
 		if (cyl != nullptr) {
 			shape.type = CYLINDER;
 
-			shape.params.cyl.alen = cyl->base_length;
-			shape.params.cyl.blen = cyl->top_length;
-			shape.params.cyl.aoff = cyl->a_offset;
-			shape.params.cyl.height = cyl->height;
-			shape.params.cyl.depth = cyl->depth;
+			shape.params.cyl.radius = cyl->radius;
+			shape.params.cyl.depth = cyl->height;
+			shape.params.cyl.isRolling = (abs(getSpeed()) > 0);
+			shape.params.cyl.isSteering = (abs(getSteering()) > 0);
 			shape.xyz[0] = cyl->getX();
 			shape.xyz[1] = cyl->getY();
 			shape.xyz[2] = cyl->getZ();
@@ -144,6 +146,7 @@ void Vehicle::populate(VehicleModel vm)
 			shape.rgb[0] = cyl->getRed();
 			shape.rgb[1] = cyl->getGreen();
 			shape.rgb[2] = cyl->getBlue();
+
 		}
 
 

@@ -320,7 +320,8 @@ void idle() {
 
 					VehicleModel vm;
 					vm.remoteID = 0;
-
+					MyVehicle * v = new MyVehicle();
+					v->populate(vm);
 					//
 					// student code goes here
 					//
@@ -361,10 +362,30 @@ void idle() {
 								// uncomment the line below to create remote vehicles
 								otherVehicles[vm.remoteID] = new MyVehicle();
 
-								otherVehicles[vm.remoteID]->populate(vm);
-								//
-								// more student code goes here
-								//
+								std::vector<ShapeInit>::iterator it;
+								for (it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
+									
+									switch (it->type) {
+
+									case RECTANGULAR_PRISM:
+
+										break;
+
+									case TRAPEZOIDAL_PRISM:
+
+										break;
+
+									case CYLINDER:
+
+										break;
+
+									case TRIANGULAR_PRISM:
+
+										break;
+									}
+
+
+								}
 							}
 							break;
 						}
