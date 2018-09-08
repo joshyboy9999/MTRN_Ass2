@@ -33,11 +33,16 @@ public:
 	double getBlue();
 	void setColor(float red_, float green_, float blue_);
 
+	// Add code for rolling, note this might casue issue
+	double getRolling();
+	void setRolling(double rolling_);
+	void rollingInGL();
+
 protected:
 	double x, y, z;               // position
 	double rotation;              // heading of the object in the horizontal plane (degrees)
 	float red, green, blue;       // colour of object
-
+	double rolling = 0;
 };
 
 #endif // for MTRN3500_SHAPE_H

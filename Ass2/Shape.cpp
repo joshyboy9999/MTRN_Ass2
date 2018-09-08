@@ -112,5 +112,18 @@ void Shape::setColor(float red_, float green_, float blue_) {
 	red = red_;
 	green = green_;
 	blue = blue_;
-};
+}
+double Shape::getRolling()
+{
+	return rolling;
+}
+void Shape::setRolling(double rolling_)
+{
+	rolling = rolling_;
+}
+void Shape::rollingInGL()
+{
+	glRotated(-rolling, 0, 0, 1);
+}
+;
 
