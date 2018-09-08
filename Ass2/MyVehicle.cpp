@@ -20,6 +20,8 @@ MyVehicle::MyVehicle() {
 	TriangularPrism *tri = new TriangularPrism(0, .5, 0, 0, 1, .5, .7, 2);
 	tri->setColor(0, 0, 1);
 	addShape(tri);
+
+
 	TrapezodialPrism *trap = new TrapezodialPrism(.5, .5, 0, 0, 2, 1, 1, .4, .5);
 	trap->setColor(1, 1, 1);
 	addShape(trap);
@@ -80,10 +82,32 @@ void MyVehicle::draw()
 	glPushMatrix();
 
 	positionInGL();
+	
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
+		// make the wheel steering
+		if (it == shapes.begin() + 4 || it == shapes.begin() + 6) {
+			(*it)->setRotation(steering);
+		}
+
+		// make the wheel rotated
+		/*if (it >= shapes.begin() + 3) {
+		
+			double rotation = getSpeed() * 180/ (0.5 * 3.14);
+
+			(*it).glRotated(-rotation, 1, 0, 0);
+
+			(*it)->draw();
+
+		}
+		else {
+			(*it)->draw();
+		}
+	*/
 		(*it)->draw();
+
 	}
+
 
 	glPopMatrix();
 }
