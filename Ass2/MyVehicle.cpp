@@ -89,13 +89,13 @@ void MyVehicle::draw()
 		if (it == shapes.begin() + 4 || it == shapes.begin() + 6) {
 			(*it)->setRotation(steering);
 		}
-
+		/*
 		// make the wheel rotated
-		/*if (it >= shapes.begin() + 3) {
+		if (it >= shapes.begin() + 3) {
 		
-			double rotation = getSpeed() * 180/ (0.5 * 3.14);
+			double rotation = getSpeed() * 180 / (0.5 * 3.14);
 
-			(*it).glRotated(-rotation, 1, 0, 0);
+			(*it)->Spinning(rotation);
 
 			(*it)->draw();
 

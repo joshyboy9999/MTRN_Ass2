@@ -40,13 +40,13 @@ void RectangularPrism::draw()
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length
-	glBegin(GL_QUADS);
+/*glBegin(GL_QUADS);
 		glVertex3d(x + half_width, y + height, z + length); //first corner at start
 		glVertex3d(x - half_width, y + height, z + length);
 		glVertex3d(x - half_width, y + height, z - length);
 		glVertex3d(x + half_width, y + height, z - length);
 	glEnd();
-	
+	*/
 	glBegin(GL_QUADS);
 		glVertex3d(x +  half_width, y, z + length); //bottom face
 		glVertex3d(x - half_width, y, z + length);

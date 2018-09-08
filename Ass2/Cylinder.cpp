@@ -36,10 +36,10 @@ void Cylinder::draw()
 	GLUquadric *cptr = gluNewQuadric();
 	GLUquadric *disk_front = gluNewQuadric();
 	GLUquadric *disk_back = gluNewQuadric();
+
 	// Draw the cylinder
 	glPushMatrix();
 	positionInGL();
-
 
 	glPushMatrix();
 	glTranslated(0, 0, -half_height);
@@ -55,5 +55,19 @@ void Cylinder::draw()
 	gluDisk(disk_back, 0, radius, 50, 1);
 	glPopMatrix();
 
+	/*// Draw a rectangle on the side
+	glBegin(GL_QUADS);
+	glVertex3d(x , y , z ); //first corner at start
+	glVertex3d(x , y + 0.5, z );
+	glVertex3d(x , y , z + 1);
+	glVertex3d(x , y + 0.5, z + 1);
+	glEnd();
+	*/
 	glPopMatrix();
+}
+
+void Cylinder::Spinning(double spin_)
+{
+	spin = spin_;
+	glRotated(-spin, 0, 0, 1);
 }
