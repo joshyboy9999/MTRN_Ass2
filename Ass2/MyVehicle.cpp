@@ -52,11 +52,25 @@ MyVehicle::~MyVehicle(){
 
 double MyVehicle::roll()
 {
+	double it = 0;
 	int i = 0;
-	
+	if (speed > 0) {
+		i = 0;
+		while (i < 1000 && speed >0) {
 
+			i = i + speed;
+		}
+	}
+	else if (speed < 0) 
+	{
+		i = 0;
+		while (i < 1000 && speed < 0) {
+			it = speed + it;
+			i++;
+		}
+	}
 
-	return rolling;
+	return it;
 }
 
 /*
@@ -104,11 +118,12 @@ void MyVehicle::draw()
 		}
 		
 		// make the wheel rotated
-		if (it >= shapes.begin() + 3) {
+		if (it >= (shapes.begin() + 3) && it <= shapes.end()) {
 			
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			glPushMatrix();
-			(*it)->setRolling(30);
+			(*it)->setRolling(roll());
+			
 			(*it)->rollingInGL();
 			(*it)->draw();
 			glPopMatrix();
@@ -117,7 +132,7 @@ void MyVehicle::draw()
 			(*it)->draw();
 		}
 	
-		(*it)->draw();
+		//(*it)->draw();
 	}
 
 
