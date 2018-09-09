@@ -9,5 +9,7 @@ public:
 	//MyVehicle(double x_, double y_, double z_, double rotation_);
 	double roll();
 	void draw();
+private:
+	double spin = 0;
 
 };

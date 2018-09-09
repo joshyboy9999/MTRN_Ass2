@@ -38,7 +38,7 @@ MyVehicle::MyVehicle() {
 	brwheel->setColor(0, 0, 0);
 	addShape(brwheel);
 	// add a shape to see whether wheels are moving
-	RectangularPrism *rect = new RectangularPrism(2, 0.5, 1, 0, 0.5, 0.2, 0.8);
+	RectangularPrism *rect = new RectangularPrism(1, 0, 0.5, 0, 0.7, 2, 1);
 	rect->setColor(0, 2, 1);
 	addShape(rect);
 
@@ -52,25 +52,21 @@ MyVehicle::~MyVehicle(){
 
 double MyVehicle::roll()
 {
+	double spin = 0;
 	double it = 0;
 	int i = 0;
-	if (speed > 0) {
-		i = 0;
-		while (i < 1000 && speed >0) {
 
-			i = i + speed;
-		}
-	}
-	else if (speed < 0) 
-	{
-		i = 0;
-		while (i < 1000 && speed < 0) {
-			it = speed + it;
-			i++;
-		}
+	spin = spin + speed / 4;
+	
+	if (spin > 360) {
+		spin = spin - 360;
 	}
 
-	return it;
+	if (spin < 0) {
+		spin = spin + 360;
+	}
+
+	return spin;
 }
 
 /*
@@ -105,7 +101,6 @@ MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle
 */
 void MyVehicle::draw()
 {
-	
 	glPushMatrix();
 
 	positionInGL();
@@ -118,13 +113,12 @@ void MyVehicle::draw()
 		}
 		
 		// make the wheel rotated
-		if (it >= (shapes.begin() + 3) && it <= shapes.end()) {
+		if (it > (shapes.begin() + 3) && it <= shapes.end()) {
 			
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			glPushMatrix();
-			(*it)->setRolling(roll());
 			
-			(*it)->rollingInGL();
+			glRotated(-roll(), 0, 0, 1);
 			(*it)->draw();
 			glPopMatrix();
 		}

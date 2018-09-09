@@ -40,7 +40,7 @@ void Cylinder::draw()
 	// Draw the cylinder
 	glPushMatrix();
 	positionInGL();
-	rollingInGL();
+	
 
 	glPushMatrix();
 	glTranslated(0, 0, -half_height);
