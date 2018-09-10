@@ -37,7 +37,6 @@ void TrapezodialPrism::draw()
 {
 	double half_base = base_length / 2.0;
 	double half_depth = depth / 2.0;
-	
 	glPushMatrix();
 	positionInGL();
 	setColorInGL();

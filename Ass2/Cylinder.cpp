@@ -21,13 +21,22 @@
 #endif
 
 
+#if 0
+Cylinder::Cylinder()
+{
+}
+#endif
+Cylinder::~Cylinder()
+{
+}
+
 
 Cylinder::Cylinder(double x_, double y_, double z_,double rotation, double radius_, double height_):
 Shape(x_, y_, z_, rotation)
 {
 	radius = radius_;
 	height = height_;
-
+	spin = 0;
 }
 
 void Cylinder::draw()
@@ -38,22 +47,24 @@ void Cylinder::draw()
 	GLUquadric *disk_back = gluNewQuadric();
 
 	// Draw the cylinder
+	
 	glPushMatrix();
 	positionInGL();
 	
+	glRotated(-spin, 0, 0, 1);
 
 	glPushMatrix();
 	glTranslated(0, 0, -half_height);
 
-	gluCylinder(cptr, radius, radius, height, 50, 50);
+	gluCylinder(cptr, radius, radius, height, 5, 5);
 	
 	//draw ends of cylinder
-	gluDisk(disk_front, 0, radius, 50, 1);
+	gluDisk(disk_front, 0, radius, 5, 1);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(0, 0, half_height);
-	gluDisk(disk_back, 0, radius, 50, 1);
+	gluDisk(disk_back, 0, radius, 5, 1);
 	glPopMatrix();
 
 	/*// Draw a rectangle on the side
@@ -67,8 +78,7 @@ void Cylinder::draw()
 	glPopMatrix();
 }
 
-void Cylinder::Spinning(double spin_)
+void Cylinder::setSpin(double spin_)
 {
 	spin = spin_;
-	glRotated(-spin, 0, 0, 1);
 }

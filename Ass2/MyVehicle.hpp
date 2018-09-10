@@ -10,6 +10,6 @@ public:
 	double roll();
 	void draw();
 private:
-	double spin = 0;
+	double spin ;
 
 };

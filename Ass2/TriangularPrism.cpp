@@ -41,7 +41,6 @@ void TriangularPrism::draw()
 	double half_base = base / 2.0;
 	double height = sin(theta) * side;
 	double cos_length = cos(theta) * side;
-	
 	glPushMatrix();
 	positionInGL();
 	setColorInGL();
