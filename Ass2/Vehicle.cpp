@@ -102,10 +102,10 @@ void Vehicle::populate(VehicleModel vm)
 		if (tri != nullptr) {
 			shape.type = TRIANGULAR_PRISM;
 
-			shape.params.tri.alen = tri->length;
-			shape.params.tri.blen = tri->height;
-			shape.params.tri.angle = tri->width;
-			shape.params.tri.depth = tri->width;
+			shape.params.tri.alen = tri->base;
+			shape.params.tri.blen = tri->side;
+			shape.params.tri.angle = tri->theta;
+			shape.params.tri.depth = tri->depth;
 			shape.xyz[0] = tri->getX();
 			shape.xyz[1] = tri->getY();
 			shape.xyz[2] = tri->getZ();
