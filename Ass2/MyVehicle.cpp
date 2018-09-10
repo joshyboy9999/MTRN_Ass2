@@ -4,6 +4,8 @@
 #include "TriangularPrism.hpp"
 #include "Cylinder.h"
 #include "TrapezodialPrism.hpp"
+#include "Messages.hpp"
+
 #include <Windows.h>
 #include <tchar.h>
 #include <GL/gl.h>
@@ -51,7 +53,7 @@ double MyVehicle::roll()
 {
 	int i = 0;
 
-	spin =  spin + speed * 60/ (3.14 * 3.14);
+	spin =  spin + speed * 30/ (3.14 * 3.14);
 	
 	if (spin > 360) {
 		spin = spin - 360;
@@ -103,12 +105,13 @@ void MyVehicle::draw()
 	for (it = shapes.begin(); it != shapes.end(); it++) {
 		// make the wheel steering 
 		
-		if (it == shapes.begin() + 4 || it == shapes.begin() + 6) {
+		ShapeInit * ptr = dynamic_cast<ShapeInit *>(*it);
+		if (ptr != nullptr && ptr->params.cyl.isSteering == 1) {
 			(*it)->setRotation(steering);
 		}
 		
 		// make the wheel rotated
-		if (it > (shapes.begin() + 3)) {
+		if (ptr != nullptr && ptr->params.cyl.isRolling == 1) {
 			
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			roll();

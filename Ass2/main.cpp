@@ -163,9 +163,9 @@ void test_display()
 	
 	//MyVehicle *car = new MyVehicle(10,20,40,30);
 	//car->draw();
-	Shape *box = new RectangularPrism(.5, 0.25, 0, 0, 2, 2, 0.5);
+	//Shape *box = new RectangularPrism(.5, 0.25, 0, 0, 2, 2, 0.5);
 	//RectangularPrism *box = new RectangularPrism(0, 0, 0, 0, 10, 10, 10);
-	box->draw();
+	//box->draw();
 	
 }
 
