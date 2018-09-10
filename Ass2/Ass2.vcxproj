@@ -153,6 +153,7 @@
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Custom.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="Frustum.hpp" />
     <ClInclude Include="Ground.hpp" />
+    <ClInclude Include="Custom.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="KeyManager.hpp" />
     <ClInclude Include="Messages.hpp" />

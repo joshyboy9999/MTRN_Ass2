@@ -34,6 +34,7 @@
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
+#include "Custom.hpp"
 
 #include "Shape.hpp"
 #include "Vehicle.hpp"
@@ -312,7 +313,7 @@ void idle() {
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
-				//RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
+				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
@@ -320,7 +321,7 @@ void idle() {
 
 					VehicleModel vm;
 					vm.remoteID = 0;
-					MyVehicle * v = new MyVehicle();
+					CustomVehicle * v = new CustomVehicle();
 					v->populate(vm);
 					//
 					// student code goes here
@@ -360,7 +361,7 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new MyVehicle();
+								otherVehicles[vm.remoteID] = new CustomVehicle();
 
 								std::vector<ShapeInit>::iterator it;
 								for (it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
@@ -368,39 +369,41 @@ void idle() {
 									switch (it->type) {
 
 										case RECTANGULAR_PRISM: {
-											RectangularPrism rec((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
-											rec.setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											rec.draw();
+											RectangularPrism *rec = new RectangularPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
+											rec->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+											otherVehicles[vm.remoteID]->addShape(rec);
 											break;
 										}
 
 										case TRAPEZOIDAL_PRISM:
 										{
-											TrapezodialPrism trap((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
-											trap.setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											trap.draw();
+											TrapezodialPrism *trap = new TrapezodialPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
+											trap->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+											otherVehicles[vm.remoteID]->addShape(trap);
 											break;
 										}
 
 
 										case CYLINDER:
 										{
-											Cylinder cyl((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.cyl.radius, it->params.cyl.depth);
-											cyl.setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											cyl.draw();
+											Cylinder *cyl = new Cylinder((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.cyl.radius, it->params.cyl.depth);
+											cyl->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+											otherVehicles[vm.remoteID]->addShape(cyl);
 											break;
 										}
 										case TRIANGULAR_PRISM:
 										{
-											TriangularPrism tri((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
-											tri.setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											tri.draw();
+											TriangularPrism *tri = new TriangularPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
+											tri->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
+											otherVehicles[vm.remoteID]->addShape(tri);
 											break;
 										}
+										
 									}
 
 
 								}
+								otherVehicles[vm.remoteID]->draw();
 							}
 							break;
 						}
