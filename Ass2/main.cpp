@@ -361,7 +361,7 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new CustomVehicle();
+								otherVehicles[vm.remoteID] = new MyVehicle();
 
 								std::vector<ShapeInit>::iterator it;
 								for (it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
@@ -403,7 +403,7 @@ void idle() {
 
 
 								}
-								otherVehicles[vm.remoteID]->draw();
+								//otherVehicles[vm.remoteID]->draw();
 							}
 							break;
 						}

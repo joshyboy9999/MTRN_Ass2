@@ -43,6 +43,23 @@ MyVehicle::~MyVehicle(){
 
 };
 
+double MyVehicle::roll()
+{
+	int i = 0;
+
+	spin =  spin + speed * 30/ (3.14 * 3.14);
+	
+	if (spin > 360) {
+		spin = spin - 360;
+	}
+
+	if (spin < 0) {
+		spin = spin + 360;
+	}
+
+	return spin;
+}
+
 /*
 MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle(x_, y_, z_ , rotation_)
 {
@@ -75,10 +92,9 @@ MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle
 */
 void MyVehicle::draw()
 {
-
 	glPushMatrix();
-
 	positionInGL();
+	
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
 		// make the wheel steering 
@@ -87,10 +103,10 @@ void MyVehicle::draw()
 		if () {
 			(*it)->setRotation(steering);
 		}
-
+		
 		// make the wheel rotated
-		if (ptr != nullptr && ptr->params.cyl.isRolling == 1) {
-
+		if (ptr != nullptr && ) {
+			
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			roll();
 			Cylinder *cyl = dynamic_cast<Cylinder *>(*it);
@@ -98,16 +114,15 @@ void MyVehicle::draw()
 			//glPushMatrix();
 			(*it)->draw();
 			//glPopMatrix();
-
+			
 		}
 		else {
 			(*it)->draw();
 		}
 		*/
 		(*it)->draw();
-	
 	}
+
 
 	glPopMatrix();
 }
-

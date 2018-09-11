@@ -13,6 +13,7 @@ public:
 
 	virtual void draw() = 0;
 
+
 	double getX();
 	double getY();
 	double getZ();
@@ -32,6 +33,7 @@ public:
 	double getGreen();
 	double getBlue();
 	void setColor(float red_, float green_, float blue_);
+
 
 protected:
 	double x, y, z;               // position
