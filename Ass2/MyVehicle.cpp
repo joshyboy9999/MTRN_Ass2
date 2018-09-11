@@ -47,7 +47,7 @@ double MyVehicle::roll()
 {
 	int i = 0;
 
-	spin =  spin + speed * 30/ (3.14 * 3.14);
+	spin =  spin + speed * 10/ (3.14 * 3.14);
 	
 	if (spin > 360) {
 		spin = spin - 360;
@@ -98,14 +98,15 @@ void MyVehicle::draw()
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
 		// make the wheel steering 
-		/*
+		
 		Cylinder * ptr = dynamic_cast<Cylinder *>(*it);
-		if () {
+		
+		if ( it  == shapes.begin() + 4 || it == shapes.begin() + 6) {
 			(*it)->setRotation(steering);
 		}
 		
 		// make the wheel rotated
-		if (ptr != nullptr && ) {
+		if ( ptr !=  nullptr) {
 			
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			roll();
@@ -119,7 +120,7 @@ void MyVehicle::draw()
 		else {
 			(*it)->draw();
 		}
-		*/
+		
 		(*it)->draw();
 	}
 
