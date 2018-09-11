@@ -21,32 +21,64 @@
 #endif
 
 
+#if 0
+Cylinder::Cylinder()
+{
+}
+#endif
+Cylinder::~Cylinder()
+{
+}
+
 
 Cylinder::Cylinder(double x_, double y_, double z_,double rotation, double radius_, double height_):
 Shape(x_, y_, z_, rotation)
 {
 	radius = radius_;
 	height = height_;
-
+	spin = 0;
 }
 
 void Cylinder::draw()
 {
-	double half_height = height / 2;
-	// Draw the cylinder
-	glTranslated(x, y, z);
+	double half_height = height / 2.0;
 	GLUquadric *cptr = gluNewQuadric();
-	gluCylinder(cptr, radius, radius, height, 50, 20);
-	
-
-	// Draw the circle
-	
 	GLUquadric *disk_front = gluNewQuadric();
 	GLUquadric *disk_back = gluNewQuadric();
 
-	gluDisk(disk_front, 0, radius, 50, 1);
+	// Draw the cylinder
 	
+	glPushMatrix();
+	positionInGL();
+	
+	glRotated(-spin, 0, 0, 1);
+
+	glPushMatrix();
+	glTranslated(0, 0, -half_height);
+
+	gluCylinder(cptr, radius, radius, height, 5, 5);
+	
+	//draw ends of cylinder
+	gluDisk(disk_front, 0, radius, 5, 1);
+	glPopMatrix();
+
+	glPushMatrix();
 	glTranslated(0, 0, half_height);
-	gluDisk(disk_back, 0, radius, 50, 1);
-	glTranslated(x, y, z + height);
+	gluDisk(disk_back, 0, radius, 5, 1);
+	glPopMatrix();
+
+	/*// Draw a rectangle on the side
+	glBegin(GL_QUADS);
+	glVertex3d(x , y , z ); //first corner at start
+	glVertex3d(x , y + 0.5, z );
+	glVertex3d(x , y , z + 1);
+	glVertex3d(x , y + 0.5, z + 1);
+	glEnd();
+	*/
+	glPopMatrix();
+}
+
+void Cylinder::setSpin(double spin_)
+{
+	spin = spin_;
 }

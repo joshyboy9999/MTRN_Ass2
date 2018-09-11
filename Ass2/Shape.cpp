@@ -112,5 +112,5 @@ void Shape::setColor(float red_, float green_, float blue_) {
 	red = red_;
 	green = green_;
 	blue = blue_;
-};
+}
 

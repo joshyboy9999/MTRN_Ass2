@@ -31,23 +31,22 @@ RectangularPrism::RectangularPrism(double x_, double y_, double z_,double rotati
 
 void RectangularPrism::draw()
 {
-	double half_width = width / 2;
-	length = length / 2;
-	double half_height = height / 2;
+	double half_width = width / 2.0;
+	length = length / 2.0;
+	double half_height = height / 2.0;
 	glPushMatrix();
-	glTranslated(x, y, z);
-	glRotated(rotation, x_axis, y_axis, z_axis)
-
+	positionInGL();
+	setColorInGL();
 	//make 2 faces, make all the sides linking the faces
 
 	//first make 2 faces with displacement = length
-	glBegin(GL_QUADS);
+/*glBegin(GL_QUADS);
 		glVertex3d(x + half_width, y + height, z + length); //first corner at start
 		glVertex3d(x - half_width, y + height, z + length);
 		glVertex3d(x - half_width, y + height, z - length);
 		glVertex3d(x + half_width, y + height, z - length);
 	glEnd();
-	
+	*/
 	glBegin(GL_QUADS);
 		glVertex3d(x +  half_width, y, z + length); //bottom face
 		glVertex3d(x - half_width, y, z + length);
