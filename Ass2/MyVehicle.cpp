@@ -107,6 +107,7 @@ void MyVehicle::draw()
 		
 		ShapeInit * ptr = dynamic_cast<ShapeInit *>(*it);
 		if (ptr != nullptr && ptr->params.cyl.isSteering == 1) {
+			
 			(*it)->setRotation(steering);
 		}
 		
