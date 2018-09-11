@@ -37,6 +37,7 @@ MyVehicle::MyVehicle() {
 	addShape(brwheel);
 
 	glPopMatrix();
+
 };
 
 MyVehicle::~MyVehicle(){
@@ -75,7 +76,7 @@ MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle
 */
 void MyVehicle::draw()
 {
-
+	
 	glPushMatrix();
 
 	positionInGL();
@@ -86,4 +87,3 @@ void MyVehicle::draw()
 
 	glPopMatrix();
 }
-
