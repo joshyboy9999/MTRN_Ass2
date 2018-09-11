@@ -81,7 +81,31 @@ void MyVehicle::draw()
 	positionInGL();
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
+		// make the wheel steering 
+		/*
+		Cylinder * ptr = dynamic_cast<Cylinder *>(*it);
+		if () {
+			(*it)->setRotation(steering);
+		}
+
+		// make the wheel rotated
+		if (ptr != nullptr && ptr->params.cyl.isRolling == 1) {
+
+			// might need to add gltranslate into rollingGL to move the rolling center 
+			roll();
+			Cylinder *cyl = dynamic_cast<Cylinder *>(*it);
+			if (cyl != nullptr) cyl->setSpin(spin);
+			//glPushMatrix();
+			(*it)->draw();
+			//glPopMatrix();
+
+		}
+		else {
+			(*it)->draw();
+		}
+		*/
 		(*it)->draw();
+	
 	}
 
 	glPopMatrix();
