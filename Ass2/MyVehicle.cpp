@@ -105,8 +105,8 @@ void MyVehicle::draw()
 	for (it = shapes.begin(); it != shapes.end(); it++) {
 		// make the wheel steering 
 		
-		ShapeInit * ptr = dynamic_cast<ShapeInit *>(*it);
-		if (ptr != nullptr && ptr->params.cyl.isSteering == 1) {
+		Cylinder * ptr = dynamic_cast<Cylinder *>(*it);
+		if () {
 			(*it)->setRotation(steering);
 		}
 		
