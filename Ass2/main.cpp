@@ -320,9 +320,10 @@ void idle() {
 					ObstacleManager::get()->removeAll();
 
 					VehicleModel vm;
+					MyVehicle *car = new MyVehicle;
 					vm.remoteID = 0;
-					MyVehicle * v = new MyVehicle();
-					v->populate(&vm);
+					car->setLocal(&vm);
+
 					//
 					// student code goes here
 					//
@@ -345,6 +346,7 @@ void idle() {
 		}
 
 		// if we're still connected, receive and handle response messages from the server
+		std::cout <<"server condition: "<< RemoteDataManager::IsConnected() << std::endl;
 		if (RemoteDataManager::IsConnected()) {
 			std::vector<RemoteMessage> msgs = RemoteDataManager::Read();
 			for(unsigned int i = 0; i < msgs.size(); i++ ) {
@@ -361,11 +363,10 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new CustomVehicle(&vm);
-
+								otherVehicles[vm.remoteID] = new MyVehicle(&vm);
 
 								
-								otherVehicles[vm.remoteID]->draw();
+								//otherVehicles[vm.remoteID]->draw();
 							}
 							break;
 						}
@@ -472,6 +473,7 @@ void keydown(unsigned char key, int x, int y) {
 		Camera::get()->jumpToOrigin();
 		break;
 	case 'p':
+		cout << "p pressed" << endl;
 		Camera::get()->togglePursuitMode();
 		break;
 	}
@@ -488,7 +490,8 @@ void special_keydown(int keycode, int x, int y) {
 
 };
 
-void special_keyup(int keycode, int x, int y) {  
+void special_keyup(int keycode, int x, int y) { 
+	cout << "I" << endl;
 	KeyManager::get()->specialKeyReleased(keycode);  
 };
 
