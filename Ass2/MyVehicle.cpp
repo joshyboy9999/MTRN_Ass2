@@ -63,7 +63,7 @@ double MyVehicle::roll()
 VehicleModel MyVehicle::setLocal()
 {
 	std::vector<ShapeInit> a;
-	ShapeInit *box;
+	ShapeInit *box = new ShapeInit();
 	box->type = RECTANGULAR_PRISM;
 	box->params.rect.xlen = 3;
 	box->params.rect.ylen = 2;
@@ -77,7 +77,7 @@ VehicleModel MyVehicle::setLocal()
 	box->rgb[2] = 1;
 	a.push_back(*box);
 
-	ShapeInit *tri;
+	ShapeInit *tri = new ShapeInit();;
 	tri->type = TRIANGULAR_PRISM;
 	tri->params.tri.alen =1;
 	tri->params.tri.blen = .5;
@@ -92,7 +92,7 @@ VehicleModel MyVehicle::setLocal()
 	tri->rgb[2] = 1;
 	a.push_back(*tri);
 
-	ShapeInit *trap1;
+	ShapeInit *trap1 = new ShapeInit();;
 	trap1->type = TRAPEZOIDAL_PRISM;
 	trap1->params.trap.alen = 2;
 	trap1->params.trap.blen = 1;
@@ -108,7 +108,7 @@ VehicleModel MyVehicle::setLocal()
 	trap1->rgb[2] = 1;
 	a.push_back(*trap1);
 
-	ShapeInit *flwheel;
+	ShapeInit *flwheel = new ShapeInit();;
 	flwheel->type = CYLINDER;
 	flwheel->params.cyl.radius = .5;
 	flwheel->params.cyl.depth = .5;
@@ -123,7 +123,7 @@ VehicleModel MyVehicle::setLocal()
 	flwheel->rgb[2] = 0;
 	a.push_back(*flwheel);
 
-	ShapeInit *frwheel;
+	ShapeInit *frwheel = new ShapeInit();;
 	frwheel->type = CYLINDER;
 	frwheel->params.cyl.radius = .5;
 	frwheel->params.cyl.depth = .5;
@@ -138,7 +138,7 @@ VehicleModel MyVehicle::setLocal()
 	frwheel->rgb[2] = 0;
 	a.push_back(*frwheel);
 
-	ShapeInit *blwheel;
+	ShapeInit *blwheel = new ShapeInit();;
 	blwheel->type = CYLINDER;
 	blwheel->params.cyl.radius = .5;
 	blwheel->params.cyl.depth = .5;
@@ -153,7 +153,7 @@ VehicleModel MyVehicle::setLocal()
 	blwheel->rgb[2] = 0;
 	a.push_back(*blwheel);
 
-	ShapeInit *brwheel;
+	ShapeInit *brwheel = new ShapeInit();;
 	brwheel->type = CYLINDER;
 	brwheel->params.cyl.radius = .5;
 	brwheel->params.cyl.depth = .5;
