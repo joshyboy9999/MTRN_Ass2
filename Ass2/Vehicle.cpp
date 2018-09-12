@@ -73,7 +73,7 @@ void Vehicle::addShape(Shape * shape)
 	shapes.push_back(shape);
 }
 
-void Vehicle::populate(VehicleModel vm)
+void Vehicle::populate(VehicleModel *vm)
 {
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
@@ -150,8 +150,9 @@ void Vehicle::populate(VehicleModel vm)
 		}
 
 
-		vm.shapes.push_back(shape);
+		vm->shapes.push_back(shape);
 	}
+
 }
 
 double clamp(double a, double n, double b) {
