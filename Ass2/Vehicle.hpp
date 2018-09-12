@@ -31,7 +31,7 @@ public:
 	double getSteering() const { return steering; }
 
 	void addShape(Shape * shape);
-	void populate(VehicleModel);
+	void populate(VehicleModel * vm);
 protected:
 	double speed;     // m/s
 	double steering;  // degrees
