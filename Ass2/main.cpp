@@ -320,12 +320,10 @@ void idle() {
 					ObstacleManager::get()->removeAll();
 
 					VehicleModel vm;
-					MyVehicle *car;
+					MyVehicle *car = new MyVehicle;
 					vm.remoteID = 0;
+					car->setLocal(&vm);
 
-
-					CustomVehicle * v = new CustomVehicle();
-					v->populate(vm);
 					//
 					// student code goes here
 					//

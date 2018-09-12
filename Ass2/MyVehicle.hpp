@@ -11,7 +11,7 @@ public:
 	MyVehicle( VehicleModel *vm);
 	void draw();
 	double roll();
-	VehicleModel setLocal();
+	VehicleModel setLocal(VehicleModel *vm);
 
 private:
 	double spin;
