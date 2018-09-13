@@ -63,7 +63,7 @@ double MyVehicle::roll()
 VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 {
 	std::vector<ShapeInit> a;
-	vm->shapes = a;
+	
 	ShapeInit *box = new ShapeInit;
 	box->type = RECTANGULAR_PRISM;
 	box->params.rect.xlen = 3;
@@ -169,7 +169,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	brwheel->rgb[2] = 0;
 	a.push_back(*brwheel);
 
-
+	vm->shapes = a;
 	return *vm;
 }
 
