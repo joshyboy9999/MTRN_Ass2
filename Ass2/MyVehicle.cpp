@@ -25,16 +25,21 @@ MyVehicle::MyVehicle() {
 	addShape(trap);
 	Cylinder *flwheel = new Cylinder(0, .5, -1, 0, .5, .5);
 	flwheel->setColor(0, 0, 0);
+	flwheel->front = 0;
 	addShape(flwheel);
 	Cylinder *frwheel = new Cylinder(2, .5, -1, 0, .5, .5);
 	frwheel->setColor(0, 0, 0);
+	frwheel->front = 1;
 	addShape(frwheel);
 	Cylinder *blwheel = new Cylinder(0, .5, 1, 0, .5, .5);
-	blwheel->setColor(0, 0, 0);
+	blwheel->setColor(0, 0, 0); 
+	blwheel->front = 0;
 	addShape(blwheel);
 	Cylinder *brwheel = new Cylinder(2, .5, 1, 0, .5, .5);
 	brwheel->setColor(0, 0, 0);
+	brwheel->front = 1;
 	addShape(brwheel);
+	
 
 	glPopMatrix();
 };
@@ -62,7 +67,7 @@ double MyVehicle::roll()
 
 VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 {
-	std::vector<ShapeInit> a;
+	
 	
 	ShapeInit *box = new ShapeInit;
 	box->type = RECTANGULAR_PRISM;
@@ -76,7 +81,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	box->rgb[0] = 0;
 	box->rgb[1] = 0;
 	box->rgb[2] = 1;
-	a.push_back(*box);
+	vm->shapes.push_back(*box);
 
 	ShapeInit *tri = new ShapeInit;
 	tri->type = TRIANGULAR_PRISM;
@@ -91,7 +96,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	tri->rgb[0] = 0;
 	tri->rgb[1] = 0;
 	tri->rgb[2] = 1;
-	a.push_back(*tri);
+	vm->shapes.push_back(*tri);
 
 	ShapeInit *trap1 = new ShapeInit;
 	trap1->type = TRAPEZOIDAL_PRISM;
@@ -107,7 +112,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	trap1->rgb[0] = 1;
 	trap1->rgb[1] = 1;
 	trap1->rgb[2] = 1;
-	a.push_back(*trap1);
+	vm->shapes.push_back(*trap1);
 
 	ShapeInit *flwheel = new ShapeInit;
 	flwheel->type = CYLINDER;
@@ -122,7 +127,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	flwheel->rgb[0] = 0;
 	flwheel->rgb[1] = 0;
 	flwheel->rgb[2] = 0;
-	a.push_back(*flwheel);
+	vm->shapes.push_back(*flwheel);
 
 	ShapeInit *frwheel = new ShapeInit;
 	frwheel->type = CYLINDER;
@@ -137,7 +142,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	frwheel->rgb[0] = 0;
 	frwheel->rgb[1] = 0;
 	frwheel->rgb[2] = 0;
-	a.push_back(*frwheel);
+	vm->shapes.push_back(*frwheel);
 
 	ShapeInit *blwheel = new ShapeInit;
 	blwheel->type = CYLINDER;
@@ -152,7 +157,7 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	blwheel->rgb[0] = 0;
 	blwheel->rgb[1] = 0;
 	blwheel->rgb[2] = 0;
-	a.push_back(*blwheel);
+	vm->shapes.push_back(*blwheel);
 
 	ShapeInit *brwheel = new ShapeInit;
 	brwheel->type = CYLINDER;
@@ -167,9 +172,8 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	brwheel->rgb[0] = 0;
 	brwheel->rgb[1] = 0;
 	brwheel->rgb[2] = 0;
-	a.push_back(*brwheel);
+	vm->shapes.push_back(*brwheel);
 
-	vm->shapes = a;
 	return *vm;
 }
 
@@ -258,13 +262,15 @@ void MyVehicle::draw()
 		
 		Cylinder * ptr = dynamic_cast<Cylinder *>(*it);
 		
-		if ( it  == shapes.begin() + 4 || it == shapes.begin() + 6) {
+		/*if ( it  == shapes.begin() + 4 || it == shapes.begin() + 6) {
 			(*it)->setRotation(steering);
-		}
+		}*/
 		
 		// make the wheel rotated
 		if ( ptr !=  nullptr) {
-			
+
+			if(ptr->front == 1) (*it)->setRotation(getSteering());
+
 			// might need to add gltranslate into rollingGL to move the rolling center 
 			roll();
 			Cylinder *cyl = dynamic_cast<Cylinder *>(*it);
@@ -273,9 +279,6 @@ void MyVehicle::draw()
 			(*it)->draw();
 			//glPopMatrix();
 			
-		}
-		else {
-			(*it)->draw();
 		}
 		
 		(*it)->draw();
