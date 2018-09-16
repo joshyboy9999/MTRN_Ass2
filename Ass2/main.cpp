@@ -78,7 +78,7 @@ std::map<int, Vehicle *> otherVehicles;
 
 int frameCounter = 0;
 
-//int _tmain(int argc, _TCHAR* argv[]) {
+
 int main(int argc, char ** argv) {
 
 	const int WINDOW_WIDTH = 800;
@@ -158,15 +158,7 @@ void drawGoals()
 		glPopMatrix();
 	}
 }
-/*
-void test_display()
-{
-	
-	MyVehicle *car = new MyVehicle(10,20,40,30);
-	car->draw();
-	
-}
-*/
+
 void display() {
 	frameCounter++;
 	// -------------------------------------------------------------------------
@@ -319,13 +311,12 @@ void idle() {
 				if (RemoteDataManager::IsConnected()) {
 					ObstacleManager::get()->removeAll();
 
+					//populate vehicle model with MyVehicle
 					VehicleModel vm;
 					vm.remoteID = 0;
-					CustomVehicle * v = new CustomVehicle();
+					MyVehicle * v = new MyVehicle();
 					v->populate(vm);
-					//
-					// student code goes here
-					//
+
 
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}

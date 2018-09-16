@@ -2,7 +2,6 @@
 
 #include "Shape.hpp"
 
-
 class RectangularPrism : public Shape {
 	
 

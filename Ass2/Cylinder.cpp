@@ -32,11 +32,14 @@ Shape(x_, y_, z_, rotation)
 
 void Cylinder::draw()
 {
+
 	double half_height = height / 2.0;
+	//initiate all shape pointers required for glu functionality
 	GLUquadric *cptr = gluNewQuadric();
 	GLUquadric *disk_front = gluNewQuadric();
 	GLUquadric *disk_back = gluNewQuadric();
-	// Draw the cylinder
+
+	// Draw the cylinder and first face -half height from origin
 	glPushMatrix();
 	positionInGL();
 
@@ -45,7 +48,7 @@ void Cylinder::draw()
 
 	gluCylinder(cptr, radius, radius, height, 5, 5);
 	
-	//draw ends of cylinder
+	//draw end of cylinder
 	gluDisk(disk_front, 0, radius, 5, 1);
 	glPopMatrix();
 
