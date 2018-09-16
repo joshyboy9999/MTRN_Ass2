@@ -26,6 +26,8 @@
 	#include <sys/time.h>
 #endif
 
+#include "XBoxController.h"
+#include "XInputWrapper.h"
 #include "RectangularPrism.hpp"
 #include "TriangularPrism.hpp"
 #include "TrapezodialPrism.hpp"
@@ -65,6 +67,10 @@ using namespace scos;
 // can calculate relative mouse movement.
 int prev_mouse_x = -1;
 int prev_mouse_y = -1;
+
+// instantiate XBOX 
+XInputWrapper xinput;
+GamePad::XBoxController controller(&xinput, 0);
 
 // vehicle control related variables
 Vehicle * vehicle = NULL;
@@ -153,6 +159,7 @@ void drawGoals()
 			glColor3f(1, .3, 1);
 		else
 			glColor3f(1, 1, 1);
+
 
 		gluCylinder(quad, .5, .5, 10, 5, 1);
 		glPopMatrix();
@@ -255,47 +262,53 @@ double getTime()
 }
 
 void idle() {
-
-	if (KeyManager::get()->isAsciiKeyPressed('a')) {
+	std::cout << controller.IsConnected() << std::endl;
+	if (controller.LeftTriggerLocation() > 0) {
+		Camera::get()->togglePursuitMode();
+	}
+	if (controller.RightTriggerLocation() > 0) {
+		Camera::get()->jumpToOrigin();
+	}
+	if (KeyManager::get()->isAsciiKeyPressed('a') || controller.PressedX() == 1) {
 		Camera::get()->strafeLeft();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('c')) {
+	if (KeyManager::get()->isAsciiKeyPressed('c') || controller.PressedLeftShoulder() == 1) {
 		Camera::get()->strafeDown();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('d')) {
+	if (KeyManager::get()->isAsciiKeyPressed('d') || controller.PressedB() == 1) {
 		Camera::get()->strafeRight();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('s')) {
+	if (KeyManager::get()->isAsciiKeyPressed('s') || controller.PressedA() == 1) {
 		Camera::get()->moveBackward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('w')) {
+	if (KeyManager::get()->isAsciiKeyPressed('w') || controller.PressedY() == 1) {
 		Camera::get()->moveForward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
+	if (KeyManager::get()->isAsciiKeyPressed(' ') || controller.PressedRightShoulder() == 1) {
 		Camera::get()->strafeUp();
 	}
 
 	speed = 0;
 	steering = 0;
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)|| controller.RightThumbLocation().GetX() < 0) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT) || controller.RightThumbLocation().GetX() > 0) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP) || controller.RightThumbLocation().GetY() > 0) {
 		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN) || controller.RightThumbLocation().GetY() < 0) {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 
