@@ -26,6 +26,8 @@
 	#include <sys/time.h>
 #endif
 
+#include "XBoxController.h"
+#include "XInputWrapper.h"
 #include "RectangularPrism.hpp"
 #include "TriangularPrism.hpp"
 #include "TrapezodialPrism.hpp"
@@ -66,6 +68,10 @@ using namespace scos;
 int prev_mouse_x = -1;
 int prev_mouse_y = -1;
 
+// instantiate XBOX 
+XInputWrapper xinput;
+GamePad::XBoxController controller(&xinput, 0);
+
 // vehicle control related variables
 Vehicle * vehicle = NULL;
 double speed = 0;
@@ -78,7 +84,7 @@ std::map<int, Vehicle *> otherVehicles;
 
 int frameCounter = 0;
 
-
+//int _tmain(int argc, _TCHAR* argv[]) {
 int main(int argc, char ** argv) {
 
 	const int WINDOW_WIDTH = 800;
@@ -154,11 +160,20 @@ void drawGoals()
 		else
 			glColor3f(1, 1, 1);
 
+
 		gluCylinder(quad, .5, .5, 10, 5, 1);
 		glPopMatrix();
 	}
 }
-
+/*
+void test_display()
+{
+	
+	MyVehicle *car = new MyVehicle(10,20,40,30);
+	car->draw();
+	
+}
+*/
 void display() {
 	frameCounter++;
 	// -------------------------------------------------------------------------
@@ -247,47 +262,53 @@ double getTime()
 }
 
 void idle() {
-
-	if (KeyManager::get()->isAsciiKeyPressed('a')) {
+	std::cout << controller.IsConnected() << std::endl;
+	if (controller.LeftTriggerLocation() > 0) {
+		Camera::get()->togglePursuitMode();
+	}
+	if (controller.RightTriggerLocation() > 0) {
+		Camera::get()->jumpToOrigin();
+	}
+	if (KeyManager::get()->isAsciiKeyPressed('a') || controller.PressedX() == 1) {
 		Camera::get()->strafeLeft();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('c')) {
+	if (KeyManager::get()->isAsciiKeyPressed('c') || controller.PressedLeftShoulder() == 1) {
 		Camera::get()->strafeDown();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('d')) {
+	if (KeyManager::get()->isAsciiKeyPressed('d') || controller.PressedB() == 1) {
 		Camera::get()->strafeRight();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('s')) {
+	if (KeyManager::get()->isAsciiKeyPressed('s') || controller.PressedA() == 1) {
 		Camera::get()->moveBackward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed('w')) {
+	if (KeyManager::get()->isAsciiKeyPressed('w') || controller.PressedY() == 1) {
 		Camera::get()->moveForward();
 	}
 
-	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
+	if (KeyManager::get()->isAsciiKeyPressed(' ') || controller.PressedRightShoulder() == 1) {
 		Camera::get()->strafeUp();
 	}
 
 	speed = 0;
 	steering = 0;
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)|| controller.RightThumbLocation().GetX() < 0) {
 		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT) || controller.RightThumbLocation().GetX() > 0) {
 		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP) || controller.RightThumbLocation().GetY() > 0) {
 		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
 	}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
+	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN) || controller.RightThumbLocation().GetY() < 0) {
 		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 	}
 
@@ -311,12 +332,14 @@ void idle() {
 				if (RemoteDataManager::IsConnected()) {
 					ObstacleManager::get()->removeAll();
 
-					//populate vehicle model with MyVehicle
 					VehicleModel vm;
+					MyVehicle *car = new MyVehicle;
 					vm.remoteID = 0;
-					MyVehicle * v = new MyVehicle();
-					v->populate(vm);
+					car->setLocal(&vm);
 
+					//
+					// student code goes here
+					//
 
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
@@ -336,6 +359,7 @@ void idle() {
 		}
 
 		// if we're still connected, receive and handle response messages from the server
+		std::cout <<"server condition: "<< RemoteDataManager::IsConnected() << std::endl;
 		if (RemoteDataManager::IsConnected()) {
 			std::vector<RemoteMessage> msgs = RemoteDataManager::Read();
 			for(unsigned int i = 0; i < msgs.size(); i++ ) {
@@ -352,49 +376,10 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new CustomVehicle();
+								otherVehicles[vm.remoteID] = new MyVehicle(&vm);
 
-								std::vector<ShapeInit>::iterator it;
-								for (it = vm.shapes.begin(); it != vm.shapes.end(); it++) {
-									
-									switch (it->type) {
-
-										case RECTANGULAR_PRISM: {
-											RectangularPrism *rec = new RectangularPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.rect.xlen, it->params.rect.ylen, it->params.rect.zlen);
-											rec->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											otherVehicles[vm.remoteID]->addShape(rec);
-											break;
-										}
-
-										case TRAPEZOIDAL_PRISM:
-										{
-											TrapezodialPrism *trap = new TrapezodialPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.trap.alen, it->params.trap.blen, it->params.trap.height, it->params.trap.aoff, it->params.trap.depth);
-											trap->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											otherVehicles[vm.remoteID]->addShape(trap);
-											break;
-										}
-
-
-										case CYLINDER:
-										{
-											Cylinder *cyl = new Cylinder((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.cyl.radius, it->params.cyl.depth);
-											cyl->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											otherVehicles[vm.remoteID]->addShape(cyl);
-											break;
-										}
-										case TRIANGULAR_PRISM:
-										{
-											TriangularPrism *tri = new TriangularPrism((double)it->xyz[0], (double)it->xyz[1], (double)it->xyz[2], it->rotation, it->params.tri.alen, it->params.tri.blen, it->params.tri.angle, it->params.tri.depth);
-											tri->setColor(it->rgb[0], it->rgb[1], it->rgb[2]);
-											otherVehicles[vm.remoteID]->addShape(tri);
-											break;
-										}
-										
-									}
-
-
-								}
-								otherVehicles[vm.remoteID]->draw();
+								
+								//otherVehicles[vm.remoteID]->draw();
 							}
 							break;
 						}
@@ -501,6 +486,7 @@ void keydown(unsigned char key, int x, int y) {
 		Camera::get()->jumpToOrigin();
 		break;
 	case 'p':
+		cout << "p pressed" << endl;
 		Camera::get()->togglePursuitMode();
 		break;
 	}
@@ -517,7 +503,8 @@ void special_keydown(int keycode, int x, int y) {
 
 };
 
-void special_keyup(int keycode, int x, int y) {  
+void special_keyup(int keycode, int x, int y) { 
+	cout << "I" << endl;
 	KeyManager::get()->specialKeyReleased(keycode);  
 };
 

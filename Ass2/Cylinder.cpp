@@ -42,6 +42,7 @@ void Cylinder::draw()
 	// Draw the cylinder and first face -half height from origin
 	glPushMatrix();
 	positionInGL();
+	glRotated(-spin, 0, 0, 1);
 
 	glPushMatrix();
 	glTranslated(0, 0, -half_height);
@@ -58,4 +59,9 @@ void Cylinder::draw()
 	glPopMatrix();
 
 	glPopMatrix();
+}
+
+void Cylinder::setSpin(double spin_)
+{
+	spin = spin_;
 }
