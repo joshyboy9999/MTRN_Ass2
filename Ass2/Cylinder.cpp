@@ -39,7 +39,7 @@ void Cylinder::draw()
 	GLUquadric *disk_front = gluNewQuadric();
 	GLUquadric *disk_back = gluNewQuadric();
 
-	// Draw the cylinder and first face -half height from origin
+	// Draw the cylinder and first face -half height from origin and apply rotational modifier for driving
 	glPushMatrix();
 	positionInGL();
 	glRotated(-spin, 0, 0, 1);
@@ -61,6 +61,7 @@ void Cylinder::draw()
 	glPopMatrix();
 }
 
+//set the speed of the rotating wheel
 void Cylinder::setSpin(double spin_)
 {
 	spin = spin_;

@@ -375,11 +375,9 @@ void idle() {
 							for(unsigned int i = 0; i < models.size(); i++) {
 								VehicleModel vm = models[i];
 								
-								// uncomment the line below to create remote vehicles
+								//convert each Vehicle Model to become an instanciable custom vehicle
 								otherVehicles[vm.remoteID] = new MyVehicle(&vm);
 
-								
-								//otherVehicles[vm.remoteID]->draw();
 							}
 							break;
 						}

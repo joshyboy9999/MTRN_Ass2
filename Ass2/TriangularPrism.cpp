@@ -24,7 +24,7 @@
 
 
 
-
+//instanciates new triangular prism
 TriangularPrism::TriangularPrism(double x_, double y_, double z_,double rotation_, double base_, double side_, double theta_, double depth_)
 	: Shape(x_, y_, z_, rotation_) {
 
@@ -35,6 +35,8 @@ TriangularPrism::TriangularPrism(double x_, double y_, double z_,double rotation
 	theta = theta_;
 }
 
+
+//draws new triangular prism to the client
 void TriangularPrism::draw()
 {
 	double half_depth = depth / 2.0;

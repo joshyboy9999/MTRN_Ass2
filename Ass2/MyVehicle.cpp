@@ -10,31 +10,40 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+//instanciating a new version of my vehicle
 MyVehicle::MyVehicle() {
 
+	//creating new instance of each shape and arranging them correctly in the vehicle
+	//push each shape to vector of shapes contained within vehicle class
 	glPushMatrix();
 	positionInGL();
 	RectangularPrism *box = new RectangularPrism(.5, 0.25, 0, 0, 3, 2, .5);
 	box->setColor(0, 0, 1);
 	addShape(box);
+
 	TriangularPrism *tri = new TriangularPrism(0, .5, 0, 0, 1, .5, .7, 2);
 	tri->setColor(0, 0, 1);
 	addShape(tri);
+
 	TrapezodialPrism *trap = new TrapezodialPrism(.5, .5, 0, 0, 2, 1, 1, .4, .5);
 	trap->setColor(1, 1, 1);
 	addShape(trap);
+
 	Cylinder *flwheel = new Cylinder(0, .5, -1, 0, .5, .5);
 	flwheel->setColor(0, 0, 0);
 	flwheel->front = 0;
 	addShape(flwheel);
+
 	Cylinder *frwheel = new Cylinder(2, .5, -1, 0, .5, .5);
 	frwheel->setColor(0, 0, 0);
 	frwheel->front = 1;
 	addShape(frwheel);
+
 	Cylinder *blwheel = new Cylinder(0, .5, 1, 0, .5, .5);
 	blwheel->setColor(0, 0, 0); 
 	blwheel->front = 0;
 	addShape(blwheel);
+
 	Cylinder *brwheel = new Cylinder(2, .5, 1, 0, .5, .5);
 	brwheel->setColor(0, 0, 0);
 	brwheel->front = 1;
@@ -44,10 +53,12 @@ MyVehicle::MyVehicle() {
 	glPopMatrix();
 };
 
+//default destructor
 MyVehicle::~MyVehicle(){
 
 };
 
+//MyVehicle Method used to set the rolling speed of the wheels based on speed from vehicle state
 double MyVehicle::roll()
 {
 	int i = 0;
@@ -65,10 +76,11 @@ double MyVehicle::roll()
 	return spin;
 }
 
+//MyVehicle method used to populate a vm to be sent to the server
 VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 {
 	
-	
+	//each shape of the vehicle is packaged to a shape init pointer and added to the shapes vector
 	ShapeInit *box = new ShapeInit;
 	box->type = RECTANGULAR_PRISM;
 	box->params.rect.xlen = 3;
@@ -177,6 +189,8 @@ VehicleModel MyVehicle::setLocal(VehicleModel *vm)
 	return *vm;
 }
 
+
+//method used to parse a vehicle model from the server into the local client by changing from shape init to shape pointers
 MyVehicle::MyVehicle(VehicleModel * vm)
 {
 	std::vector<ShapeInit>::iterator it;
@@ -221,36 +235,6 @@ MyVehicle::MyVehicle(VehicleModel * vm)
 	}
 }
 
-/*
-MyVehicle::MyVehicle(double x_, double y_, double z_, double rotation_) :Vehicle(x_, y_, z_ , rotation_)
-{
-	glPushMatrix();
-	positionInGL();
-	RectangularPrism *box = new RectangularPrism(.5, 0.25, 0, 0, 3, 2, .5);
-	box->setColor(0, 0, 1);
-	addShape(box);
-	TriangularPrism *tri = new TriangularPrism(0, .5, 0, 0, 1, .5, .7, 2);
-	tri->setColor(0, 0, 1);
-	addShape(tri);
-	TrapezodialPrism *trap = new TrapezodialPrism(.5, .5, 0, 0, 2, 1, 1, .4, .5);
-	trap->setColor(1,1,1);
-	addShape(trap);
-	Cylinder *flwheel = new Cylinder(0,.5,-1,0,.5,.5);
-	flwheel->setColor(0,0,0);
-	addShape(flwheel);
-	Cylinder *frwheel = new Cylinder(2, .5, -1, 0, .5, .5);
-	frwheel->setColor(0, 0, 0);
-	addShape(frwheel);
-	Cylinder *blwheel = new Cylinder(0, .5, 1, 0, .5, .5);
-	blwheel->setColor(0, 0, 0);
-	addShape(blwheel);
-	Cylinder *brwheel = new Cylinder(2, .5, 1, 0, .5, .5);
-	brwheel->setColor(0, 0, 0);
-	addShape(brwheel);
-
-	glPopMatrix();
-}
-*/
 void MyVehicle::draw()
 {
 	glPushMatrix();
@@ -258,27 +242,17 @@ void MyVehicle::draw()
 	
 	std::vector<Shape *>::iterator it;
 	for (it = shapes.begin(); it != shapes.end(); it++) {
-		// make the wheel steering 
 		
+		//create cylinder pointer for later manipulation in steering and spinning
 		Cylinder * ptr = dynamic_cast<Cylinder *>(*it);
-		
-		/*if ( it  == shapes.begin() + 4 || it == shapes.begin() + 6) {
-			(*it)->setRotation(steering);
-		}*/
 		
 		// make the wheel rotated
 		if ( ptr !=  nullptr) {
 
+			//sets wheels positioned at the front of the vehicle to be steered depending on the direction
 			if(ptr->front == 1) (*it)->setRotation(getSteering());
-
-			// might need to add gltranslate into rollingGL to move the rolling center 
 			roll();
-			Cylinder *cyl = dynamic_cast<Cylinder *>(*it);
-			if (cyl != nullptr) cyl->setSpin(spin);
-			//glPushMatrix();
-			(*it)->draw();
-			//glPopMatrix();
-			
+			if (ptr != nullptr) ptr->setSpin(spin);
 		}
 		
 		(*it)->draw();

@@ -20,7 +20,7 @@
 #include <sys/time.h>
 #endif
 
-
+//instanciates new trapezoidal prism
 TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double rotation_, double base_length_, double top_length_, double height_, double a_offset_, double depth_)
 	: Shape(x_, y_, z_, rotation_) {
 
@@ -33,6 +33,7 @@ TrapezodialPrism::TrapezodialPrism(double x_, double y_, double z_, double rotat
 	depth = depth_;
 }
 
+//creates a new series of quad shapes much like the rectangular prism
 void TrapezodialPrism::draw()
 {
 	double half_base = base_length / 2.0;

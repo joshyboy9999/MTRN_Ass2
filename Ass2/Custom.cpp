@@ -13,7 +13,8 @@
 #include <map>
 
 CustomVehicle::CustomVehicle(VehicleModel *vm)
-{
+{	
+	//iterator converts the shape init vector from the server VehicleModel into Vehicle Shape Vector
 	std::vector<ShapeInit>::iterator it;
 	for (it = vm->shapes.begin(); it != vm->shapes.end(); it++) {
 
@@ -57,6 +58,8 @@ CustomVehicle::CustomVehicle(VehicleModel *vm)
 
 void CustomVehicle::draw()
 {
+
+	//draw function takes each shape indevidually and initiates its own draw function
 	glPushMatrix();
 
 	positionInGL();
