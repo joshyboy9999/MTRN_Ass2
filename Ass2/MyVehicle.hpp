@@ -8,5 +8,13 @@ public:
 	MyVehicle();
 	~MyVehicle();
 	//MyVehicle(double x_, double y_, double z_, double rotation_);
+	MyVehicle( VehicleModel *vm);
 	void draw();
+	double roll();
+	VehicleModel setLocal(VehicleModel *vm);
+
+private:
+	double spin;
+	ShapeInit *local;
+	ShapeInit *Remote;
 };
